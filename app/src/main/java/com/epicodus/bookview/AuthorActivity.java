@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class AuthorActivity extends AppCompatActivity {
         mAuthorAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(AuthorActivity.this, "Author Added", Toast.LENGTH_LONG).show();
                 String author = mAuthorEditText.getText().toString();
                 authorList.add(author);
                 ArrayAdapter adapter = new ArrayAdapter(AuthorActivity.this, android.R.layout.simple_list_item_1, authorList);
