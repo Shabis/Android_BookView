@@ -25,9 +25,9 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:textSize="50dp"
+        android:textSize="70dp"
         android:textColor="@color/colorTextIcons"
-        android:id="@+id/textView2" />
+        android:id="@+id/mainWelcome" />
 
     <EditText
         android:layout_width="match_parent"

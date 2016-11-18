@@ -23,10 +23,10 @@
         android:textSize="50dp"
         android:textColor="@color/colorTextIcons"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginLeft="150dp"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:text="Author List"
         android:id="@+id/authorButton"
@@ -40,7 +40,7 @@
         android:layout_marginRight="25dp"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:text="New Button"
         android:id="@+id/wishlistButton"
