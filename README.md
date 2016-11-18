@@ -2,7 +2,7 @@
 ------
 
 This application will allow a user to create lists of favorite authors and add books to wishlist.
-![screenshot](screenshot.jpg)
+![screenshot](screenshot.png)
 <br/>
 
 ### Setup/Installation Instructions
