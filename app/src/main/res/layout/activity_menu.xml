@@ -30,19 +30,19 @@
         android:layout_height="wrap_content"
         android:text="Author List"
         android:id="@+id/authorButton"
-        android:layout_above="@+id/wishlistButton"
-        android:layout_alignRight="@+id/menuImageView"
-        android:layout_alignEnd="@+id/menuImageView"
-        android:layout_marginBottom="49dp"
         android:background="@color/colorAccent"
         android:textColor="@color/colorTextIcons"
         android:padding="5dp"
-        android:layout_marginRight="25dp"/>
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_above="@+id/wishlistButton"
+        android:layout_alignLeft="@+id/wishlistButton"
+        android:layout_alignStart="@+id/wishlistButton" />
 
     <Button
         android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="WishList"
         android:id="@+id/wishlistButton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
@@ -50,7 +50,7 @@
         android:layout_marginBottom="49dp"
         android:background="@color/colorAccent"
         android:textColor="@color/colorTextIcons"
-        android:padding="5dp"
-        android:layout_marginRight="25dp"/>
+        android:layout_margin="10dp"
+        android:padding="5dp"/>
 
 </RelativeLayout>

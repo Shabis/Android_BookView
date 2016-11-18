@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MenuActivity" />
-        <activity android:name=".AuthorActivity"></activity>
+        <activity android:name=".AuthorActivity" />
+        <activity android:name=".WishlistActivity"></activity>
     </application>
 
 </manifest>

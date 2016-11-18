@@ -4,13 +4,17 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MenuActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.welcomeUserTextView) TextView mWelcomeUserTextView;
+    @Bind(R.id.authorButton) Button mAuthorButton;
+    @Bind(R.id.wishlistButton) Button mWishlistButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,5 +27,19 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
         mWelcomeUserTextView.setText("Welcome " + name + "!");
+
+        mAuthorButton.setOnClickListener(this);
+        mWishlistButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == mAuthorButton) {
+            Intent intent = new Intent(MenuActivity.this, AuthorActivity.class);
+            startActivity(intent);
+        } else if (v == mWishlistButton) {
+            Intent intent = new Intent(MenuActivity.this, WishlistActivity.class);
+            startActivity(intent);
+        }
     }
 }
