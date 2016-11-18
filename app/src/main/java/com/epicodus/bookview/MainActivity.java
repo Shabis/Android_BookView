@@ -9,18 +9,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
-    private Button mSubmitButton;
-    private EditText mNameEditText;
-    private TextView mMainWelcome;
+    @Bind(R.id.submitButton) Button mSubmitButton;
+    @Bind(R.id.nameEditText) EditText mNameEditText;
+    @Bind(R.id.mainWelcome) TextView mMainWelcome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mSubmitButton = (Button) findViewById(R.id.submitButton);
-        mNameEditText = (EditText) findViewById(R.id.nameEditText);
-        mMainWelcome = (TextView) findViewById(R.id.mainWelcome);
+        ButterKnife.bind(this);
+
         Typeface pacificoFont = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");
         mMainWelcome.setTypeface(pacificoFont);
 

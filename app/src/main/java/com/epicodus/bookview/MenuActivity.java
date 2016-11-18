@@ -6,14 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class MenuActivity extends AppCompatActivity {
-    private TextView mWelcomeUserTextView;
+    @Bind(R.id.welcomeUserTextView) TextView mWelcomeUserTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        mWelcomeUserTextView = (TextView) findViewById(R.id.welcomeUserTextView);
+        ButterKnife.bind(this);
         Typeface pacificoFont = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");
         mWelcomeUserTextView.setTypeface(pacificoFont);
 
