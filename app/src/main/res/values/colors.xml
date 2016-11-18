@@ -8,4 +8,5 @@
     <color name="colorLightPrimary">#CFD8DC</color>
     <color name="colorTextIcons">#FFFFFF</color>
     <color name="colorDivider">#BDBDBD</color>
+    <color name="black">#000000</color>
 </resources>
