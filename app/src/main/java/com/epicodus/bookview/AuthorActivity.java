@@ -35,6 +35,7 @@ public class AuthorActivity extends AppCompatActivity {
                 authorList.add(author);
                 ArrayAdapter adapter = new ArrayAdapter(AuthorActivity.this, android.R.layout.simple_list_item_1, authorList);
                 mAuthorListView.setAdapter(adapter);
+                mAuthorEditText.setText("");
             }
         });
     }

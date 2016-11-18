@@ -35,6 +35,7 @@ public class WishlistActivity extends AppCompatActivity {
                 bookList.add(author);
                 ArrayAdapter adapter = new ArrayAdapter(WishlistActivity.this, android.R.layout.simple_list_item_1, bookList);
                 mBookListView.setAdapter(adapter);
+                mBookEditText.setText("");
             }
         });
     }
