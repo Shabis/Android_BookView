@@ -25,9 +25,22 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="150dp"/>
 
+    <EditText
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+        android:id="@+id/bookEditText"
+        android:background="@color/colorTextIcons"
+        android:layout_above="@+id/searchSubmitButton"
+        android:layout_marginBottom="10dp"
+        android:padding="5dp"
+        android:hint="Search books"
+        android:layout_centerHorizontal="true"
+        android:layout_alignLeft="@+id/wishlistButton"
+        android:layout_alignStart="@+id/wishlistButton"/>
+
     <Button
         android:layout_width="230dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:text="Author List"
         android:id="@+id/authorButton"
         android:background="@color/colorAccent"
@@ -41,7 +54,7 @@
 
     <Button
         android:layout_width="230dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:text="WishList"
         android:id="@+id/wishlistButton"
         android:layout_alignParentBottom="true"
@@ -52,5 +65,18 @@
         android:textColor="@color/colorTextIcons"
         android:layout_margin="10dp"
         android:padding="5dp"/>
+
+    <Button
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+        android:text="Search"
+        android:id="@+id/searchSubmitButton"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorTextIcons"
+        android:padding="5dp"
+        android:layout_marginBottom="32dp"
+        android:layout_above="@+id/authorButton"
+        android:layout_alignLeft="@+id/authorButton"
+        android:layout_alignStart="@+id/authorButton" />
 
 </RelativeLayout>

@@ -17,7 +17,8 @@
         </activity>
         <activity android:name=".MenuActivity" />
         <activity android:name=".AuthorActivity" />
-        <activity android:name=".WishlistActivity"></activity>
+        <activity android:name=".WishlistActivity" />
+        <activity android:name=".BookResultsActivity"></activity>
     </application>
 
 </manifest>
