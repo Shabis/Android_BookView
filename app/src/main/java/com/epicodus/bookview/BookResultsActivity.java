@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -26,7 +25,6 @@ public class BookResultsActivity extends AppCompatActivity {
     @Bind(R.id.BookResultsListView) ListView mBookResultsListView;
 
     public ArrayList<Book> mBooks = new ArrayList<>();
-    private String[] books = new String[] {"this", "is", "a", "placeholder", "book", "list"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,30 +32,45 @@ public class BookResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book_results);
         ButterKnife.bind(this);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, books);
-        mBookResultsListView.setAdapter(adapter);
         Intent intent = getIntent();
-        String book = intent.getStringExtra("book");
-        getBooks(book);
+        String query = intent.getStringExtra("query");
+        getBooks(query);
     }
 
-    private void getBooks(String book) {
+    private void getBooks(String query) {
         final GoodreadsService goodreadsService = new GoodreadsService();
-        goodreadsService.searchBooks(book, new Callback() {
+        goodreadsService.searchBooks(query, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    String jsonData = response.body().string();
-                    Log.v(TAG, jsonData);
-                    mBooks = goodreadsService.processResults(response);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            public void onResponse(Call call, Response response) {
+                mBooks = goodreadsService.processResults(response);
+
+                BookResultsActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        String[] bookNames = new String[mBooks.size()];
+                        for (int i = 0; i < bookNames.length; i++) {
+                            bookNames[i] = mBooks.get(i).getTitle();
+                        }
+
+                        ArrayAdapter adapter = new ArrayAdapter(BookResultsActivity.this,
+                                android.R.layout.simple_list_item_1, bookNames);
+                        mBookResultsListView.setAdapter(adapter);
+
+                        for (Book book : mBooks) {
+                            Log.d(TAG, "Title: " + book.getTitle());
+                            Log.d(TAG, "Author: " + book.getAuthor());
+                            Log.d(TAG, "Image url: " + book.getImageUrl());
+                            Log.d(TAG, "Rating: " + Double.toString(book.getRating()));
+
+                        }
+                    }
+                });
             }
         });
     }

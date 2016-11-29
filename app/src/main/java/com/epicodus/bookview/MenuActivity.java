@@ -46,9 +46,9 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(MenuActivity.this, WishlistActivity.class);
             startActivity(intent);
         } else if (v == mSearchSubmitButton) {
-            String book = mBookEditText.getText().toString();
+            String query = mBookEditText.getText().toString();
             Intent intent = new Intent(MenuActivity.this, BookResultsActivity.class);
-            intent.putExtra("book", book);
+            intent.putExtra("query", query);
             startActivity(intent);
         }
     }
