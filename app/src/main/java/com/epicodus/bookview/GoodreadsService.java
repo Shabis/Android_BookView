@@ -45,7 +45,7 @@ public class GoodreadsService {
         Request request= new Request.Builder()
                 .url(url)
                 .build();
-
+                Log.d(TAG, url);
         Call call = client.newCall(request);
         call.enqueue(callback);
     }
@@ -55,6 +55,7 @@ public class GoodreadsService {
 
         try {
             String jsonData = response.body().string();
+            Log.v(TAG, jsonData);
             if (response.isSuccessful()) {
                 JSONObject goodreadsJSON = new JSONObject(jsonData);
                 JSONArray resultsJSON = goodreadsJSON.getJSONArray("GoodreadsResponse");

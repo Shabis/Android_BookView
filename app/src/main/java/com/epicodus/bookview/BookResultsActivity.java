@@ -48,6 +48,7 @@ public class BookResultsActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) {
                 mBooks = goodreadsService.processResults(response);
+                Log.v(TAG, "in on response");
 
                 BookResultsActivity.this.runOnUiThread(new Runnable() {
                     @Override
