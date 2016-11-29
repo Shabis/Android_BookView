@@ -37,7 +37,7 @@ public class GoodreadsService {
                 .build();
 
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.GOODREADS_BASE_URL).newBuilder();
-        urlBuilder.addQueryParameter(Constants.GOODREADS_BOOK_QUERY_PARAMETER,"");
+        urlBuilder.addQueryParameter(Constants.GOODREADS_BOOK_QUERY_PARAMETER,query);
         String url = urlBuilder.build().toString();
         Log.d(TAG, url);
 
