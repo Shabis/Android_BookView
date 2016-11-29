@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -23,6 +25,7 @@ public class BookResultsActivity extends AppCompatActivity {
     public static final String TAG = BookResultsActivity.class.getSimpleName();
     @Bind(R.id.BookResultsListView) ListView mBookResultsListView;
 
+    public ArrayList<Book> mBooks = new ArrayList<>();
     private String[] books = new String[] {"this", "is", "a", "placeholder", "book", "list"};
 
     @Override
@@ -51,6 +54,7 @@ public class BookResultsActivity extends AppCompatActivity {
                 try {
                     String jsonData = response.body().string();
                     Log.v(TAG, jsonData);
+                    mBooks = goodreadsService.processResults(response);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
