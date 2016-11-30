@@ -65,10 +65,6 @@ public class BookResultsActivity extends AppCompatActivity {
 
                         for (Book book : mBooks) {
                             Log.d(TAG, "Title: " + book.getTitle());
-                            Log.d(TAG, "Author: " + book.getAuthor());
-                            Log.d(TAG, "Image url: " + book.getImageUrl());
-                            Log.d(TAG, "Rating: " + Double.toString(book.getRating()));
-
                         }
                     }
                 });

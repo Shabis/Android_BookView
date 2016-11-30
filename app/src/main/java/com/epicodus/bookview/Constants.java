@@ -6,3 +6,5 @@ public class Constants {
     public static final String GOODREADS_BASE_URL = "https://www.goodreads.com/search?key=RLeAzHEgbmiCTvsAUjLgnA";
     public static final String GOODREADS_BOOK_QUERY_PARAMETER = "q";
 }
+
+// https://www.googleapis.com/books/v1/volumes?
