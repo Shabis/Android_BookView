@@ -44,18 +44,7 @@ public class GoodreadsService {
 
         try {
             String jsonData = response.body().string();
-            JSONObject jsonObj = null;
-            try {
-                jsonObj = XML.toJSONObject(jsonData);
-            } catch (JSONException e) {
-                Log.e("JSON exception", e.getMessage());
-                e.printStackTrace();
-            }
 
-            Log.d("XML", jsonData);
-
-            Log.d("JSON", jsonObj.toString());
-            Log.v(TAG, jsonData);
             if (response.isSuccessful()) {
                 Log.v(TAG, "beginning json 1");
                 JSONObject goodreadsJSON = new JSONObject(jsonData);
