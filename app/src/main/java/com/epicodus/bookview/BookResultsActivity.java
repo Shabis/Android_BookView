@@ -20,7 +20,23 @@ public class BookResultsActivity extends AppCompatActivity {
     public static final String TAG = BookResultsActivity.class.getSimpleName();
     @Bind(R.id.BookResultsListView) ListView mBookResultsListView;
 
+    public ArrayList<Book> mBooks = new ArrayList<>();
+
     private String[] books = new String[] {"this", "is", "a", "placeholder", "book", "list"};
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_book_results);
+        ButterKnife.bind(this);
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, books);
+        mBookResultsListView.setAdapter(adapter);
+        Intent intent = getIntent();
+        String book = intent.getStringExtra("book");
+
+        getBooks(book);
+    }
 
     private void getBooks(String book){
         final GoogleBooksService googleBooksService = new GoogleBooksService();
@@ -35,24 +51,11 @@ public class BookResultsActivity extends AppCompatActivity {
                 try {
                     String jsonData = response.body().string();
                     Log.v(TAG, jsonData);
+                    mBooks = googleBooksService.processResults(response);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_results);
-        ButterKnife.bind(this);
-
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, books);
-        mBookResultsListView.setAdapter(adapter);
-        Intent intent = getIntent();
-        String book = intent.getStringExtra("book");
-
-        getBooks(book);
     }
 }
