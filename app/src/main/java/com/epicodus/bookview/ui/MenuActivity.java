@@ -1,4 +1,4 @@
-package com.epicodus.bookview;
+package com.epicodus.bookview.ui;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.epicodus.bookview.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
