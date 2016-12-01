@@ -36,7 +36,6 @@ public class BookResultsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String book = intent.getStringExtra("book");
         getBooks(book);
-        Log.v(TAG, book);
     }
 
 
@@ -50,13 +49,28 @@ public class BookResultsActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    String jsonData = response.body().string();
-                    Log.v(TAG, jsonData);
-                    mBooks = googleBooksService.processResults(response);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                mBooks = googleBooksService.processResults(response);
+                BookResultsActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String[] bookNames = new String[mBooks.size()];
+                        for (int i = 0; i < bookNames.length; i++) {
+                            bookNames[i] = mBooks.get(i).getTitle();
+                        }
+
+                        ArrayAdapter adapter = new ArrayAdapter(BookResultsActivity.this, android.R.layout.simple_list_item_1, bookNames);
+                        mBookResultsListView.setAdapter(adapter);
+
+                        for(Book book : mBooks) {
+                            Log.d(TAG, "Title: " + book.getTitle());
+                            Log.d(TAG, "Title: " + book.getAuthors());
+                            Log.d(TAG, "Title: " + book.getDescription());
+                            Log.d(TAG, "Title: " + book.getImageUrl());
+                            Log.d(TAG, "Title: " + book.getAverageRating());
+                            Log.d(TAG, "Title: " + book.getRatingCount());
+                        }
+                    }
+                });
             }
         });
     }

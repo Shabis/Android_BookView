@@ -32,12 +32,13 @@ public class GoogleBooksService {
 
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.GOOGLE_BOOKS_BASE_URL).newBuilder();
         urlBuilder.addQueryParameter(Constants.GOOGLE_BOOKS_QUERY_PARAMETER, book);
+        urlBuilder.addQueryParameter(Constants.GOOGLE_BOOKS_KEY_PARAMETER, Constants.GOOGLE_BOOKS_KEY);
         String url = urlBuilder.build().toString();
         Log.v(TAG, url);
 
 
         Request request = new Request.Builder()
-                .header("apikey", Constants.GOOGLE_BOOKS_KEY)
+//                .header("apikey", Constants.GOOGLE_BOOKS_KEY)
                 .url(url)
                 .build();
 
@@ -50,9 +51,9 @@ public class GoogleBooksService {
         ArrayList<Book> books = new ArrayList<>();
         try {
 //            System.setProperty("http.keepAlive", "true");
-            Log.v(TAG, "4");
+            Log.v(TAG, "response in service" + response.toString());
             String jsonData = response.body().string();
-            Log.v(TAG, "4");
+            Log.v(TAG, "This is jsondata"+jsonData);
 
             if (response.isSuccessful()) {
                 Log.v(TAG, "Beginning");
@@ -61,14 +62,20 @@ public class GoogleBooksService {
                 for (int i = 0; i < itemsJSON.length(); i++) {
                     JSONObject bookJSON = itemsJSON.getJSONObject(i);
                     String title = bookJSON.getJSONObject("volumeInfo").getString("title");
-                    String author = bookJSON.getJSONObject("volumeInfo").getString("author");
-                    String link = bookJSON.getString("link");
-                    String description = bookJSON.getString("description");
-                    String imageUrl = bookJSON.getJSONObject("imageLinks").getString("imageUrl");
-                    double averageRating = bookJSON.getDouble("averageRating");
-                    int ratingCount = bookJSON.getInt("ratingCount");
+                    Log.v(TAG, "title: " + title);
+                    ArrayList<String> authors = new ArrayList<>();
+                    JSONArray authorJSON = bookJSON.getJSONObject("volumeInfo").getJSONArray("authors");
+                    Log.v(TAG, "author array: " + authorJSON);
+                    for (int y = 0; y < authorJSON.length(); y++) {
+                        authors.add(authorJSON.get(y).toString());
+                    }
 
-                    Book book = new Book(title, author, link, description, imageUrl, averageRating, ratingCount);
+                    String description = bookJSON.getJSONObject("volumeInfo").getString("description");
+                    String imageUrl = bookJSON.getJSONObject("volumeInfo").getJSONObject("imageLinks").getString("thumbnail");
+                    double averageRating = bookJSON.getJSONObject("volumeInfo").getDouble("averageRating");
+                    int ratingCount = bookJSON.getJSONObject("volumeInfo").getInt("ratingsCount");
+
+                    Book book = new Book(title, authors, description, imageUrl, averageRating, ratingCount);
                     books.add(book);
                     Log.v(TAG, "end");
                 }
