@@ -35,4 +35,5 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'se.akerfeldt:okhttp-signpost:1.1.0'
     compile 'com.google.api-client:google-api-client:1.22.0'
+    compile 'com.android.support:recyclerview-v7:+'
 }
