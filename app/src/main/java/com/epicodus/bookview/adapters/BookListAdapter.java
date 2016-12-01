@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.epicodus.bookview.R;
 import com.epicodus.bookview.models.Book;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -61,6 +62,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         }
 
         public void bindBook(Book book) {
+            Picasso.with(mContext).load(book.getImageUrl()).into(mBookImageView);
             mBookTitleTextView.setText(book.getTitle());
             mAuthorTextView.setText(book.getAuthors().get(0));
             mRatingTextView.setText("Rating: " + book.getAverageRating());
