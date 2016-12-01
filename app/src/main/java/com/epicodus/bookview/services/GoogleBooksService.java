@@ -1,6 +1,9 @@
-package com.epicodus.bookview;
+package com.epicodus.bookview.services;
 
 import android.util.Log;
+
+import com.epicodus.bookview.Constants;
+import com.epicodus.bookview.models.Book;
 
 import org.json.JSONArray;
 import org.json.JSONException;

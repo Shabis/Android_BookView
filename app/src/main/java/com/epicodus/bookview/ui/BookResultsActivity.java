@@ -1,4 +1,4 @@
-package com.epicodus.bookview;
+package com.epicodus.bookview.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.epicodus.bookview.R;
+import com.epicodus.bookview.models.Book;
+import com.epicodus.bookview.services.GoogleBooksService;
 
 import java.io.IOException;
 import java.util.ArrayList;

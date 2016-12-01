@@ -1,4 +1,4 @@
-package com.epicodus.bookview;
+package com.epicodus.bookview.models;
 
 import java.util.ArrayList;
 
