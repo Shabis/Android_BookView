@@ -1,7 +1,7 @@
 # BookView
 ------
 
-This application will allow a user to create lists of favorite authors and add books to wishlist.
+This application will allow a user to search Google Books API, create lists of favorite authors and add books to wishlist.
 <br/>
 
 ### Setup/Installation Instructions
@@ -26,6 +26,7 @@ No known bugs.
 
 * The user will be able to add authors to favorites list.
 * The user will be able to create personal wishlist
+* The user will be able to search Google Books for Title, Author, Description and Rating.
 
 ### Support and Contact Details
 ------
