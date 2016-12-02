@@ -15,19 +15,20 @@ public class Book {
     String mImageUrl;
     double mAverageRating;
     int mRatingCount;
+    String mWebsite;
 
 
 
     public Book() {}
 
-    public Book(String title, ArrayList<String> authors, String description, String imageUrl, double averageRating, int ratingCount) {
+    public Book(String title, ArrayList<String> authors, String description, String imageUrl, double averageRating, int ratingCount, String website) {
         this.mTitle = title;
         this.mAuthors = authors;
         this.mDescription = description;
         this.mImageUrl = imageUrl;
         this.mAverageRating = averageRating;
         this.mRatingCount = ratingCount;
-
+        this.mWebsite = website;
         mImageUrl = getLargeImageUrl(imageUrl);
     }
 
@@ -53,6 +54,10 @@ public class Book {
 
     public int getRatingCount() {
         return mRatingCount;
+    }
+
+    public String getWebsite() {
+        return mWebsite;
     }
 
     public String getLargeImageUrl(String imageUrl) {

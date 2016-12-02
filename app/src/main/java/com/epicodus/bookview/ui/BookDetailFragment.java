@@ -1,6 +1,8 @@
 package com.epicodus.bookview.ui;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,7 +21,7 @@ import org.parceler.Parcels;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class BookDetailFragment extends Fragment {
+public class BookDetailFragment extends Fragment implements View.OnClickListener {
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 300;
 
@@ -29,7 +31,7 @@ public class BookDetailFragment extends Fragment {
     @Bind(R.id.bookDescriptionTextView) TextView mDescriptionLabel;
     @Bind(R.id.bookRatingTextView) TextView mRatingLabel;
     @Bind(R.id.bookRatingCountTextView) TextView mRatingCountLabel;
-//    @Bind(R.id.websiteTextView) TextView mWebsiteTextView;
+    @Bind(R.id.websiteTextView) TextView mWebsiteLabel;
     @Bind(R.id.saveBookButton) TextView mSaveBookButton;
 
     private Book mBook;
@@ -62,12 +64,22 @@ public class BookDetailFragment extends Fragment {
                 .into(mImageLabel);
 
         mTitleLabel.setText(mBook.getTitle());
-        mAuthorLabel.setText(android.text.TextUtils.join(", ", mBook.getAuthors()));
+        mAuthorLabel.setText("By " + (android.text.TextUtils.join(", ", mBook.getAuthors())));
         mDescriptionLabel.setText(mBook.getDescription());
         mRatingLabel.setText(Double.toString(mBook.getAverageRating()));
         mRatingCountLabel.setText(Integer.toString(mBook.getRatingCount()));
 
+        mWebsiteLabel.setOnClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == mWebsiteLabel) {
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mBook.getWebsite()));
+            startActivity(webIntent);
+        }
     }
 
 }

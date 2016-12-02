@@ -22,10 +22,6 @@ import okhttp3.Response;
 import se.akerfeldt.okhttp.signpost.OkHttpOAuthConsumer;
 import se.akerfeldt.okhttp.signpost.SigningInterceptor;
 
-/**
- * Created by Shelby Clayton on 11/30/2016.
- */
-
 public class GoogleBooksService {
     public static final String TAG = GoogleBooksService.class.getSimpleName();
 
@@ -41,7 +37,6 @@ public class GoogleBooksService {
 
 
         Request request = new Request.Builder()
-//                .header("apikey", Constants.GOOGLE_BOOKS_KEY)
                 .url(url)
                 .build();
 
@@ -49,11 +44,9 @@ public class GoogleBooksService {
         call.enqueue(callback);
 }
 
-
     public ArrayList<Book> processResults(Response response) {
         ArrayList<Book> books = new ArrayList<>();
         try {
-//            System.setProperty("http.keepAlive", "true");
             Log.v(TAG, "response in service" + response.toString());
             String jsonData = response.body().string();
             Log.v(TAG, "This is jsondata"+jsonData);
@@ -108,7 +101,14 @@ public class GoogleBooksService {
                         ratingCount = 0;
                     }
 
-                    Book book = new Book(title, authors, description, imageUrl, averageRating, ratingCount);
+                    String website = "";
+                    if (bookJSON.getJSONObject("volumeInfo").has("previewLink")) {
+                        website = bookJSON.getJSONObject("volumeInfo").getString("previewLink");
+                    } else {
+                        website = "Preview Not Available";
+                    }
+
+                    Book book = new Book(title, authors, description, imageUrl, averageRating, ratingCount, website);
                     books.add(book);
                     Log.v(TAG, "end");
                 }
