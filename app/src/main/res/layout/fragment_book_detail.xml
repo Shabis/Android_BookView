@@ -38,16 +38,16 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="4.5/5"
-                android:id="@+id/bookRatingTextView"
-                android:layout_alignTop="@+id/bookTitleTextView"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold" />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="4.5/5"-->
+                <!--android:id="@+id/bookRatingTextView"-->
+                <!--android:layout_alignTop="@+id/bookTitleTextView"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:textColor="@color/colorAccent"-->
+                <!--android:textStyle="bold" />-->
 
             <TextView
                 android:layout_width="wrap_content"
@@ -76,19 +76,6 @@
                 android:paddingLeft="30dp"
                 android:paddingTop="20dp"
                 android:paddingRight="30dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="View on GoogleBooks"
-                    android:id="@+id/websiteTextView"
-                    android:drawablePadding="4dp"
-                    android:textColor="@color/colorTextIcons"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center" />
-                <!--android:drawableLeft="@drawable/ic_exit_to_app_white_24dp"-->
 
                 <TextView
                     android:layout_width="wrap_content"

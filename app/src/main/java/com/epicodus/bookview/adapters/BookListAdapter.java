@@ -3,6 +3,7 @@ package com.epicodus.bookview.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,6 +78,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
 
         @Override
         public void onClick(View v) {
+            Log.d("click listener", " working!");
             int itemPosition = getLayoutPosition();
             Intent intent = new Intent(mContext, BookDetailActivity.class);
             intent.putExtra("position", itemPosition + "");

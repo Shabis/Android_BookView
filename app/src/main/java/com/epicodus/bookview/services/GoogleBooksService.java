@@ -62,21 +62,51 @@ public class GoogleBooksService {
                 Log.v(TAG, "Beginning");
                 JSONObject googleJSON = new JSONObject(jsonData);
                 JSONArray itemsJSON = googleJSON.getJSONArray("items");
+
+
                 for (int i = 0; i < itemsJSON.length(); i++) {
                     JSONObject bookJSON = itemsJSON.getJSONObject(i);
-                    String title = bookJSON.getJSONObject("volumeInfo").getString("title");
-                    Log.v(TAG, "title: " + title);
+
+                    String title = "";
+                    if(bookJSON.getJSONObject("volumeInfo").has("title")) {
+                        title = bookJSON.getJSONObject("volumeInfo").getString("title");
+                    } else {
+                        title = "no title available";
+                    }
+
                     ArrayList<String> authors = new ArrayList<>();
                     JSONArray authorJSON = bookJSON.getJSONObject("volumeInfo").getJSONArray("authors");
-                    Log.v(TAG, "author array: " + authorJSON);
                     for (int y = 0; y < authorJSON.length(); y++) {
                         authors.add(authorJSON.get(y).toString());
                     }
 
-                    String description = bookJSON.getJSONObject("volumeInfo").getString("description");
-                    String imageUrl = bookJSON.getJSONObject("volumeInfo").getJSONObject("imageLinks").getString("thumbnail");
-                    double averageRating = bookJSON.getJSONObject("volumeInfo").getDouble("averageRating");
-                    int ratingCount = bookJSON.getJSONObject("volumeInfo").getInt("ratingsCount");
+                    String description = "";
+                    if (bookJSON.getJSONObject("volumeInfo").has("description")) {
+                        description = bookJSON.getJSONObject("volumeInfo").getString("description");
+                    } else {
+                        description = "no description available";
+                    }
+
+                    String imageUrl = "";
+                    if (bookJSON.getJSONObject("volumeInfo").getJSONObject("imageLinks").has("thumbnail")) {
+                        imageUrl = bookJSON.getJSONObject("volumeInfo").getJSONObject("imageLinks").getString("thumbnail");
+                    } else {
+                        imageUrl = "No Preview Available";
+                    }
+
+                    double averageRating = 0;
+                    if (bookJSON.getJSONObject("volumeInfo").has("averageRating")) {
+                        averageRating = bookJSON.getJSONObject("volumeInfo").getDouble("averageRating");
+                    } else {
+                        averageRating = 0;
+                    }
+
+                    int ratingCount = 0;
+                    if (bookJSON.getJSONObject("volumeInfo").has("ratingsCount")) {
+                        ratingCount = bookJSON.getJSONObject("volumeInfo").getInt("ratingsCount");
+                    } else {
+                        ratingCount = 0;
+                    }
 
                     Book book = new Book(title, authors, description, imageUrl, averageRating, ratingCount);
                     books.add(book);

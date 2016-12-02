@@ -28,8 +28,9 @@ public class BookDetailFragment extends Fragment {
     @Bind(R.id.bookTitleTextView) TextView mTitleLabel;
     @Bind(R.id.bookAuthorTextView) TextView mAuthorLabel;
     @Bind(R.id.bookDescriptionTextView) TextView mDescriptionLabel;
-    @Bind(R.id.bookRatingTextView) TextView mRatingLabel;
+//    @Bind(R.id.bookRatingTextView) TextView mRatingLabel;
     @Bind(R.id.bookRatingCountTextView) TextView mRatingCountLabel;
+//    @Bind(R.id.websiteTextView) TextView mWebsiteTextView;
     @Bind(R.id.saveBookButton) TextView mSaveBookButton;
 
     private Book mBook;
@@ -60,7 +61,7 @@ public class BookDetailFragment extends Fragment {
         mTitleLabel.setText(mBook.getTitle());
         mAuthorLabel.setText(android.text.TextUtils.join(", ", mBook.getAuthors()));
         mDescriptionLabel.setText(mBook.getDescription());
-        mRatingLabel.setText(Double.toString(mBook.getAverageRating()));
+//        mRatingLabel.setText(Double.toString(mBook.getAverageRating()));
         mRatingCountLabel.setText(mBook.getRatingCount());
 
         return view;
