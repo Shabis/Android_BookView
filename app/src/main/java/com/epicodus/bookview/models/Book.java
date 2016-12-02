@@ -16,8 +16,7 @@ public class Book {
     double mAverageRating;
     int mRatingCount;
 
-    public Book() {
-    }
+    public Book() {}
 
     public Book(String title, ArrayList<String> authors, String description, String imageUrl, double averageRating, int ratingCount) {
         this.mTitle = title;

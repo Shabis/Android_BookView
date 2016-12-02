@@ -49,7 +49,7 @@ public class BookDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_movie_detail,container, false);
+        View view = inflater.inflate(R.layout.fragment_book_detail,container, false);
         ButterKnife.bind(this, view);
 
         Picasso.with(view.getContext()).load(mBook.getImageUrl()).into(mImageLabel);
@@ -59,7 +59,7 @@ public class BookDetailFragment extends Fragment {
         mDescriptionLabel.setText(mBook.getDescription());
         mRatingLabel.setText(Double.toString(mBook.getAverageRating()));
         mRatingCountLabel.setText(mBook.getRatingCount());
-        return inflater.inflate(R.layout.fragment_movie_detail, container, false);
+        return inflater.inflate(R.layout.fragment_book_detail, container, false);
 
         return view;
     }

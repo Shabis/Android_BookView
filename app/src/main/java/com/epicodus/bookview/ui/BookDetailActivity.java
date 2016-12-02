@@ -10,7 +10,6 @@ import com.epicodus.bookview.models.Book;
 
 import org.parceler.Parcels;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -25,7 +24,7 @@ public class BookDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_detail);
+        setContentView(R.layout.activity_book_detail);
         ButterKnife.bind(this);
 
         mBooks = Parcels.unwrap(getIntent().getParcelableExtra("books"));
