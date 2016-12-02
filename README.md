@@ -27,6 +27,8 @@ No known bugs.
 * The user will be able to add authors to favorites list.
 * The user will be able to create personal wishlist
 * The user will be able to search Google Books for Title, Author, Description and Rating.
+* The user will be able to click on individual books for more information about the title.
+* The user will be able to click on link from the book's detail page to view a sample of the book on Google Books.
 
 ### Support and Contact Details
 ------
