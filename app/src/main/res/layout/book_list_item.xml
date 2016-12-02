@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Book Title"
-            android:id="@+id/authorTextView"
+            android:id="@+id/bookAuthorTextView"
             android:layout_below="@+id/bookTitleTextView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rating"
-                android:id="@+id/ratingTextView"
+                android:id="@+id/bookRatingTextView"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/colorAccent"/>

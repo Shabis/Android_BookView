@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import com.epicodus.bookview.models.Book;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
+import org.w3c.dom.Text;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -23,15 +25,16 @@ import butterknife.ButterKnife;
  */
 public class BookDetailFragment extends Fragment {
     @Bind(R.id.bookImageView) ImageView mImageLabel;
-    @Bind(R.id.booksTitleTextView) TextView mTitleLabel;
+    @Bind(R.id.bookTitleTextView) TextView mTitleLabel;
     @Bind(R.id.bookAuthorTextView) TextView mAuthorLabel;
     @Bind(R.id.bookDescriptionTextView) TextView mDescriptionLabel;
     @Bind(R.id.bookRatingTextView) TextView mRatingLabel;
     @Bind(R.id.bookRatingCountTextView) TextView mRatingCountLabel;
+    @Bind(R.id.saveBookButton) TextView mSaveBookButton;
 
     private Book mBook;
 
-    public BookDetailFragment newInstance(Book book) {
+    public static BookDetailFragment newInstance(Book book) {
         BookDetailFragment bookDetailFragment = new BookDetailFragment();
         Bundle args = new Bundle();
         args.putParcelable("book", Parcels.wrap(book));
@@ -49,7 +52,7 @@ public class BookDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_book_detail,container, false);
+        View view = inflater.inflate(R.layout.fragment_book_detail, container, false);
         ButterKnife.bind(this, view);
 
         Picasso.with(view.getContext()).load(mBook.getImageUrl()).into(mImageLabel);
@@ -59,7 +62,6 @@ public class BookDetailFragment extends Fragment {
         mDescriptionLabel.setText(mBook.getDescription());
         mRatingLabel.setText(Double.toString(mBook.getAverageRating()));
         mRatingCountLabel.setText(mBook.getRatingCount());
-        return inflater.inflate(R.layout.fragment_book_detail, container, false);
 
         return view;
     }

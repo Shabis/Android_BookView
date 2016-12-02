@@ -52,11 +52,11 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         return mBooks.size();
     }
 
-    public class BookViewHolder extends RecyclerView.ViewHolder {
+    public class BookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @Bind(R.id.bookImageView) ImageView mBookImageView;
         @Bind(R.id.bookTitleTextView) TextView mBookTitleTextView;
-        @Bind(R.id.authorTextView) TextView mAuthorTextView;
-        @Bind(R.id.ratingTextView) TextView mRatingTextView;
+        @Bind(R.id.bookAuthorTextView) TextView mBookAuthorTextView;
+        @Bind(R.id.bookRatingTextView) TextView mBookRatingTextView;
 
         private Context mContext;
 
@@ -68,22 +68,20 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
             itemView.setOnClickListener(this);
         }
 
+        public void bindBook(Book book) {
+            Picasso.with(mContext).load(book.getImageUrl()).into(mBookImageView);
+            mBookTitleTextView.setText(book.getTitle());
+            mBookAuthorTextView.setText(book.getAuthors().get(0));
+            mBookRatingTextView.setText("Rating: " + book.getAverageRating());
+        }
+
         @Override
         public void onClick(View v) {
             int itemPosition = getLayoutPosition();
             Intent intent = new Intent(mContext, BookDetailActivity.class);
-            intent.putExtra("position", itemPosition);
+            intent.putExtra("position", itemPosition + "");
             intent.putExtra("books", Parcels.wrap(mBooks));
             mContext.startActivity(intent);
         }
-
-        public void bindBook(Book book) {
-            Picasso.with(mContext).load(book.getImageUrl()).into(mBookImageView);
-            mBookTitleTextView.setText(book.getTitle());
-            mAuthorTextView.setText(book.getAuthors().get(0));
-            mRatingTextView.setText("Rating: " + book.getAverageRating());
-        }
-
-
     }
 }
