@@ -41,6 +41,12 @@
                 android:value="com.epicodus.bookview.ui.MainActivity">
             </meta-data>
         </activity>
+        <activity android:name=".ui.BookDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.epicodus.bookview.ui.MainActivity">
+            </meta-data>
+        </activity>
     </application>
 
 </manifest>
