@@ -15,15 +15,14 @@ import com.epicodus.bookview.models.Book;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
-import org.w3c.dom.Text;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class BookDetailFragment extends Fragment {
+    private static final int MAX_WIDTH = 200;
+    private static final int MAX_HEIGHT = 300;
+
     @Bind(R.id.bookImageView) ImageView mImageLabel;
     @Bind(R.id.bookTitleTextView) TextView mTitleLabel;
     @Bind(R.id.bookAuthorTextView) TextView mAuthorLabel;
@@ -56,7 +55,11 @@ public class BookDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_book_detail, container, false);
         ButterKnife.bind(this, view);
 
-        Picasso.with(view.getContext()).load(mBook.getImageUrl()).into(mImageLabel);
+        Picasso.with(view.getContext())
+                .load(mBook.getImageUrl())
+                .resize(MAX_WIDTH, MAX_HEIGHT)
+                .centerCrop()
+                .into(mImageLabel);
 
         mTitleLabel.setText(mBook.getTitle());
         mAuthorLabel.setText(android.text.TextUtils.join(", ", mBook.getAuthors()));

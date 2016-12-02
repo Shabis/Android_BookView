@@ -16,6 +16,8 @@ public class Book {
     double mAverageRating;
     int mRatingCount;
 
+
+
     public Book() {}
 
     public Book(String title, ArrayList<String> authors, String description, String imageUrl, double averageRating, int ratingCount) {
@@ -25,6 +27,8 @@ public class Book {
         this.mImageUrl = imageUrl;
         this.mAverageRating = averageRating;
         this.mRatingCount = ratingCount;
+
+        mImageUrl = getLargeImageUrl(imageUrl);
     }
 
     public String getTitle() {
@@ -49,5 +53,10 @@ public class Book {
 
     public int getRatingCount() {
         return mRatingCount;
+    }
+
+    public String getLargeImageUrl(String imageUrl) {
+        String largeImageUrl = imageUrl.substring(0, imageUrl.length() - 6).concat("o.jpg");
+        return largeImageUrl;
     }
 }

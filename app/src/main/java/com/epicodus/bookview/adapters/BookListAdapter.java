@@ -28,6 +28,9 @@ import butterknife.ButterKnife;
  */
 
 public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookViewHolder> {
+    private static final int MAX_WIDTH = 200;
+    private static final int MAX_HEIGHT = 200;
+
     private ArrayList<Book> mBooks = new ArrayList<>();
     private Context mContext;
 
@@ -70,7 +73,11 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         }
 
         public void bindBook(Book book) {
-            Picasso.with(mContext).load(book.getImageUrl()).into(mBookImageView);
+            Picasso.with(mContext)
+                    .load(book.getImageUrl())
+                    .resize(MAX_WIDTH, MAX_HEIGHT)
+                    .centerCrop()
+                    .into(mBookImageView);
             mBookTitleTextView.setText(book.getTitle());
             mBookAuthorTextView.setText(book.getAuthors().get(0));
             mBookRatingTextView.setText("Rating: " + book.getAverageRating());
