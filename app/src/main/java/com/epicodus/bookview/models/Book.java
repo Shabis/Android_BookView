@@ -1,13 +1,14 @@
 package com.epicodus.bookview.models;
 
-import java.io.Serializable;
+
+import org.parceler.Parcel;
 import java.util.ArrayList;
 
 /**
  * Created by Shelby Clayton on 11/30/2016.
  */
-
-public class Book implements Serializable {
+@Parcel
+public class Book {
     String mTitle;
     ArrayList<String> mAuthors = new ArrayList<>();
     String mDescription;

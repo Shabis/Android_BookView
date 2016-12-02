@@ -9,9 +9,6 @@ import com.epicodus.bookview.ui.BookDetailFragment;
 
 import java.util.ArrayList;
 
-/**
- * Created by Guest on 12/2/16.
- */
 public class BookPagerAdapter extends FragmentPagerAdapter {
     private ArrayList<Book> mBooks;
 
