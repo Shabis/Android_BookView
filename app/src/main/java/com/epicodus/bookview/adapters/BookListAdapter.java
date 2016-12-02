@@ -1,6 +1,7 @@
 package com.epicodus.bookview.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,10 @@ import android.widget.TextView;
 
 import com.epicodus.bookview.R;
 import com.epicodus.bookview.models.Book;
+import com.epicodus.bookview.ui.BookDetailActivity;
 import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 
@@ -59,6 +63,8 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+
+            itemView.setOnClickListener(this);
         }
 
         public void bindBook(Book book) {
@@ -66,6 +72,15 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
             mBookTitleTextView.setText(book.getTitle());
             mAuthorTextView.setText(book.getAuthors().get(0));
             mRatingTextView.setText("Rating: " + book.getAverageRating());
+        }
+
+        @Override
+        public void onClick(View v) {
+            int itemPosition = getLayoutPosition();
+            Intent intent = new Intent(mContext, BookDetailActivity.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("books", Parcel.wrap(mBooks));
+            mContext.startActivity(intent);
         }
     }
 }

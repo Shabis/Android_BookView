@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MovieDetailFragment extends Fragment {
+public class BookDetailFragment extends Fragment {
     @Bind(R.id.bookImageView) ImageView mImageLabel;
     @Bind(R.id.bookTitleTextView) TextView mTitleLabel;
     @Bind(R.id.bookAuthorTextView) TextView mAuthorLabel;
@@ -31,7 +31,7 @@ public class MovieDetailFragment extends Fragment {
 
     private Book mBook;
 
-    public MovieDetailFragment newInstance(Book book) {
+    public BookDetailFragment newInstance(Book book) {
         BookDetailFragment bookDetailFragment = new BookDetailFragment();
         Bundle args = new Bundle();
         args.putParcelable("book", Parcels.wrap(book));
@@ -57,7 +57,7 @@ public class MovieDetailFragment extends Fragment {
         mTitleLabel.setText(mBook.getTitle());
         mAuthorLabel.setText(android.text.TextUtils.join(", ", mBook.getAuthors()));
         mDescriptionLabel.setText(mBook.getDescription());
-        mRatingLabel.setText(mBook.getAverageRating());
+        mRatingLabel.setText(Double.toString(mBook.getAverageRating()));
         mRatingCountLabel.setText(mBook.getRatingCount());
         return inflater.inflate(R.layout.fragment_movie_detail, container, false);
 

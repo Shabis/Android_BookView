@@ -5,24 +5,24 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.epicodus.bookview.models.Book;
-import com.epicodus.bookview.ui.MovieDetailFragment;
+import com.epicodus.bookview.ui.BookDetailFragment;
 
 import java.util.ArrayList;
 
 /**
  * Created by Guest on 12/2/16.
  */
-public class MoviePagerAdapter extends FragmentPagerAdapter {
+public class BookPagerAdapter extends FragmentPagerAdapter {
     private ArrayList<Book> mBooks;
 
-    public MoviePagerAdapter(FragmentManager fm, ArrayList<Book> books) {
+    public BookPagerAdapter(FragmentManager fm, ArrayList<Book> books) {
         super(fm);
         mBooks = books;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return MovieDetailFragment.newInstance(mBooks.get(position));
+        return BookDetailFragment.newInstance(mBooks.get(position));
     }
 
     @Override

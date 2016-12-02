@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.epicodus.bookview.R;
 
-public class MovieDetailActivity extends AppCompatActivity {
+public class BookDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
