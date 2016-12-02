@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
  */
 public class BookDetailFragment extends Fragment {
     @Bind(R.id.bookImageView) ImageView mImageLabel;
-    @Bind(R.id.bookTitleTextView) TextView mTitleLabel;
+    @Bind(R.id.booksTitleTextView) TextView mTitleLabel;
     @Bind(R.id.bookAuthorTextView) TextView mAuthorLabel;
     @Bind(R.id.bookDescriptionTextView) TextView mDescriptionLabel;
     @Bind(R.id.bookRatingTextView) TextView mRatingLabel;

@@ -15,6 +15,7 @@ import com.epicodus.bookview.ui.BookDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcel;
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -67,6 +68,15 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
             itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            int itemPosition = getLayoutPosition();
+            Intent intent = new Intent(mContext, BookDetailActivity.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("books", Parcels.wrap(mBooks));
+            mContext.startActivity(intent);
+        }
+
         public void bindBook(Book book) {
             Picasso.with(mContext).load(book.getImageUrl()).into(mBookImageView);
             mBookTitleTextView.setText(book.getTitle());
@@ -74,13 +84,6 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
             mRatingTextView.setText("Rating: " + book.getAverageRating());
         }
 
-        @Override
-        public void onClick(View v) {
-            int itemPosition = getLayoutPosition();
-            Intent intent = new Intent(mContext, BookDetailActivity.class);
-            intent.putExtra("position", itemPosition);
-            intent.putExtra("books", Parcel.wrap(mBooks));
-            mContext.startActivity(intent);
-        }
+
     }
 }

@@ -16,8 +16,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class BookDetailActivity extends AppCompatActivity {
-    @Bind(R.id.viewPager)
-    ViewPager mViewPager;
+    @Bind(R.id.viewPager) ViewPager mViewPager;
     private BookPagerAdapter adapterViewPager;
     ArrayList<Book> mBooks = new ArrayList<>();
 
