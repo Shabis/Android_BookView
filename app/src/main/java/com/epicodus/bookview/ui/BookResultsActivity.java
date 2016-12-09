@@ -27,8 +27,6 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class BookResultsActivity extends AppCompatActivity {
-    private SharedPreferences mSharedPreferences;
-    private String mRecentSearch;
     public static final String TAG = BookResultsActivity.class.getSimpleName();
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
 
@@ -44,12 +42,6 @@ public class BookResultsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String book = intent.getStringExtra("book");
         getBooks(book);
-        
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentSearch = mSharedPreferences.getString(Constants.SEARCH_PREFERENCE_KEY, null);
-        if (mRecentSearch != null) {
-            getBooks(mRecentSearch);
-        }
     }
 
     private void getBooks(String book){

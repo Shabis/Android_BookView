@@ -1,12 +1,10 @@
 package com.epicodus.bookview.ui;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.preference.PreferenceManager;
-import android.support.annotation.BinderThread;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,13 +12,18 @@ import android.widget.TextView;
 
 import com.epicodus.bookview.Constants;
 import com.epicodus.bookview.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
-    private SharedPreferences mSharedPreferences;
-    private SharedPreferences.Editor mEditor;
+    private DatabaseReference mSearchedBookReference;
+    private ValueEventListener mSearchedBookReferenceListener;
 
     @Bind(R.id.welcomeUserTextView) TextView mWelcomeUserTextView;
     @Bind(R.id.authorButton) Button mAuthorButton;
@@ -30,6 +33,26 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mSearchedBookReference = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child(Constants.FIREBASE_CHILD_BOOK_SEARCH);
+
+        mSearchedBookReferenceListener = mSearchedBookReference.addValueEventListener(new ValueEventListener() {
+           @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+               for (DataSnapshot bookSnapshot : dataSnapshot.getChildren()) {
+                   String book = bookSnapshot.getValue().toString();
+                   Log.v("location updated", "book " + book);
+               }
+           }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         ButterKnife.bind(this);
@@ -39,9 +62,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
         mWelcomeUserTextView.setText("Welcome " + name + "!");
-
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mEditor = mSharedPreferences.edit();
 
         mAuthorButton.setOnClickListener(this);
         mWishlistButton.setOnClickListener(this);
@@ -58,16 +78,20 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         } else if (v == mSearchSubmitButton) {
             String book = mBookEditText.getText().toString();
-            if (!(book).equals("")) {
-                addToSharedPreferences(book);
-            }
+            saveBooksToFirebase(book);
             Intent intent = new Intent(MenuActivity.this, BookResultsActivity.class);
             intent.putExtra("book", book);
             startActivity(intent);
         }
     }
 
-    private void addToSharedPreferences(String book) {
-        mEditor.putString(Constants.SEARCH_PREFERENCE_KEY, book).apply();
+    private void saveBooksToFirebase(String book) {
+        mSearchedBookReference.push().setValue(book);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mSearchedBookReference.removeEventListener(mSearchedBookReferenceListener);
     }
 }
