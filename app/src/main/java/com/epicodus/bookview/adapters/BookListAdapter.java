@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.epicodus.bookview.Constants;
 import com.epicodus.bookview.R;
 import com.epicodus.bookview.models.Book;
 import com.epicodus.bookview.ui.BookDetailActivity;
