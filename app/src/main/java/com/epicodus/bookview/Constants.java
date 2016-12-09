@@ -11,4 +11,5 @@ public class Constants {
     public static final String GOOGLE_BOOKS_QUERY_PARAMETER = "q";
     public static final String SEARCH_PREFERENCE_KEY = "book";
     public static final String FIREBASE_CHILD_BOOK_SEARCH = "searchedBooks";
+    public static final String FIREBASE_CHILD_WISHLIST = "wishlist";
 }

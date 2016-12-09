@@ -13,9 +13,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.epicodus.bookview.Constants;
 import com.epicodus.bookview.R;
 import com.epicodus.bookview.models.Book;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -73,6 +77,8 @@ public class BookDetailFragment extends Fragment implements View.OnClickListener
         mRatingCountLabel.setText((Integer.toString(mBook.getRatingCount())) + " Ratings");
         Log.v("rating = ", rating);
         Log.v("mRatingBar ", mRatingBar.toString());
+
+        mSaveBookButton.setOnClickListener(this);
         mWebsiteLabel.setOnClickListener(this);
 
         return view;
@@ -83,6 +89,13 @@ public class BookDetailFragment extends Fragment implements View.OnClickListener
         if (v == mWebsiteLabel) {
             Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mBook.getWebsite()));
             startActivity(webIntent);
+        }
+        if (v == mSaveBookButton) {
+            DatabaseReference bookRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_WISHLIST);
+            bookRef.push().setValue(mBook);
+            Toast.makeText(getContext(), "Book Saved to Wishlist", Toast.LENGTH_LONG).show();
         }
     }
 

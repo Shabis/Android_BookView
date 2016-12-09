@@ -85,7 +85,6 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
 
         @Override
         public void onClick(View v) {
-            Log.d("click listener", " working!");
             int itemPosition = getLayoutPosition();
             Intent intent = new Intent(mContext, BookDetailActivity.class);
             intent.putExtra("position", itemPosition + "");

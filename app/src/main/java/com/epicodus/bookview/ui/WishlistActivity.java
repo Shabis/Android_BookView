@@ -2,6 +2,8 @@ package com.epicodus.bookview.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -9,7 +11,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.epicodus.bookview.Constants;
 import com.epicodus.bookview.R;
+import com.epicodus.bookview.adapters.FirebaseBookViewHolder;
+import com.epicodus.bookview.models.Book;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,27 +26,41 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class WishlistActivity extends AppCompatActivity {
-    @Bind(R.id.bookEditText) EditText mBookEditText;
-    @Bind(R.id.bookAddButton) Button mBookAddButton;
-    @Bind(R.id.bookListView) ListView mBookListView;
-    List<String> bookList = new ArrayList();
+    private DatabaseReference mBookReference;
+    private FirebaseRecyclerAdapter mFirebaseAdapter;
+
+    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wishlist);
+
+        setContentView(R.layout.activity_book_results);
         ButterKnife.bind(this);
 
-        mBookAddButton.setOnClickListener(new View.OnClickListener() {
+        mBookReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_WISHLIST);
+        setUpFirebaseAdapter();
+    }
+
+    private void setUpFirebaseAdapter() {
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<Book, FirebaseBookViewHolder>
+                (Book.class, R.layout.book_list_item, FirebaseBookViewHolder.class,
+                        mBookReference) {
+
             @Override
-            public void onClick(View v) {
-                Toast.makeText(WishlistActivity.this, "Book Added", Toast.LENGTH_LONG).show();
-                String author = mBookEditText.getText().toString();
-                bookList.add(author);
-                ArrayAdapter adapter = new ArrayAdapter(WishlistActivity.this, android.R.layout.simple_list_item_1, bookList);
-                mBookListView.setAdapter(adapter);
-                mBookEditText.setText("");
+            protected void populateViewHolder(FirebaseBookViewHolder viewHolder,
+                                              Book model, int position) {
+                viewHolder.bindBook(model);
             }
-        });
+        };
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(mFirebaseAdapter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mFirebaseAdapter.cleanup();
     }
 }

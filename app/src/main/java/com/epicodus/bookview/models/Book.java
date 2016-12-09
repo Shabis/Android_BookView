@@ -9,55 +9,55 @@ import java.util.ArrayList;
  */
 @Parcel
 public class Book {
-    String mTitle;
-    ArrayList<String> mAuthors = new ArrayList<>();
-    String mDescription;
-    String mImageUrl;
-    double mAverageRating;
-    int mRatingCount;
-    String mWebsite;
+    String title;
+    ArrayList<String> authors = new ArrayList<>();
+    String description;
+    String imageUrl;
+    double averageRating;
+    int ratingCount;
+    String website;
 
 
 
     public Book() {}
 
     public Book(String title, ArrayList<String> authors, String description, String imageUrl, double averageRating, int ratingCount, String website) {
-        this.mTitle = title;
-        this.mAuthors = authors;
-        this.mDescription = description;
-        this.mImageUrl = imageUrl;
-        this.mAverageRating = averageRating;
-        this.mRatingCount = ratingCount;
-        this.mWebsite = website;
-        mImageUrl = getLargeImageUrl(imageUrl);
+        this.title = title;
+        this.authors = authors;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.averageRating = averageRating;
+        this.ratingCount = ratingCount;
+        this.website = website;
+        this.imageUrl = getLargeImageUrl(imageUrl);
     }
 
     public String getTitle() {
-        return mTitle;
+        return title;
     }
 
     public ArrayList<String> getAuthors() {
-        return mAuthors;
+        return authors;
     }
 
     public String getDescription() {
-        return mDescription;
+        return description;
     }
 
     public String getImageUrl() {
-        return mImageUrl;
+        return imageUrl;
     }
 
     public double getAverageRating() {
-        return mAverageRating;
+        return averageRating;
     }
 
     public int getRatingCount() {
-        return mRatingCount;
+        return ratingCount;
     }
 
     public String getWebsite() {
-        return mWebsite;
+        return website;
     }
 
     public String getLargeImageUrl(String imageUrl) {
