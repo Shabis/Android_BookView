@@ -41,18 +41,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4.5/5"
-                android:id="@+id/bookRatingTextView"
-                android:layout_alignTop="@+id/bookTitleTextView"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="NA"
+                android:text="0 Ratings"
                 android:id="@+id/bookRatingCountTextView"
                 android:textColor="@color/colorSecondaryText"
                 android:textStyle="italic"
@@ -73,6 +62,19 @@
                 android:layout_below="@+id/bookTitleTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
+
+            <RatingBar
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:id="@+id/ratingBar"
+                android:stepSize="0.01"
+                android:max="5"
+                android:numStars="5"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:isIndicator="true"/>
 
         </RelativeLayout>
 
@@ -130,6 +132,7 @@
                     android:gravity="center_vertical"/>
 
             </LinearLayout>
+
         </RelativeLayout>
     </LinearLayout>
 </FrameLayout>

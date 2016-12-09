@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.epicodus.bookview.R;
@@ -29,10 +31,10 @@ public class BookDetailFragment extends Fragment implements View.OnClickListener
     @Bind(R.id.bookTitleTextView) TextView mTitleLabel;
     @Bind(R.id.bookAuthorTextView) TextView mAuthorLabel;
     @Bind(R.id.bookDescriptionTextView) TextView mDescriptionLabel;
-    @Bind(R.id.bookRatingTextView) TextView mRatingLabel;
     @Bind(R.id.bookRatingCountTextView) TextView mRatingCountLabel;
     @Bind(R.id.websiteTextView) TextView mWebsiteLabel;
     @Bind(R.id.saveBookButton) TextView mSaveBookButton;
+    @Bind(R.id.ratingBar) RatingBar mRatingBar;
 
     private Book mBook;
 
@@ -63,12 +65,14 @@ public class BookDetailFragment extends Fragment implements View.OnClickListener
                 .centerCrop()
                 .into(mImageLabel);
 
+        String rating = Double.toString(mBook.getAverageRating());
         mTitleLabel.setText(mBook.getTitle());
         mAuthorLabel.setText("By " + (android.text.TextUtils.join(", ", mBook.getAuthors())));
         mDescriptionLabel.setText(mBook.getDescription());
-        mRatingLabel.setText(Double.toString(mBook.getAverageRating()));
+        mRatingBar.setRating(Float.parseFloat(String.valueOf(rating)));
         mRatingCountLabel.setText((Integer.toString(mBook.getRatingCount())) + " Ratings");
-
+        Log.v("rating = ", rating);
+        Log.v("mRatingBar ", mRatingBar.toString());
         mWebsiteLabel.setOnClickListener(this);
 
         return view;
