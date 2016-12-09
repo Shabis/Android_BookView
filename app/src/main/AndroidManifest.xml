@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.epicodus.bookview">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -10,42 +10,42 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity"
+        <activity
+            android:name=".ui.MainActivity"
             android:theme="@style/NoActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ui.MenuActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.epicodus.bookview.ui.MainActivity">
-            </meta-data>
+                android:value="com.epicodus.bookview.ui.MainActivity"></meta-data>
         </activity>
         <activity android:name=".ui.AuthorActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.epicodus.bookview.ui.MainActivity">
-            </meta-data>
+                android:value="com.epicodus.bookview.ui.MenuActivity"></meta-data>
         </activity>
         <activity android:name=".ui.WishlistActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.epicodus.bookview.ui.MainActivity">
-            </meta-data>
+                android:value="com.epicodus.bookview.ui.MenuActivity"></meta-data>
         </activity>
         <activity android:name=".ui.BookResultsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.epicodus.bookview.ui.MainActivity">
-            </meta-data>
+                android:value="com.epicodus.bookview.ui.MenuActivity"></meta-data>
         </activity>
         <activity android:name=".ui.BookDetailActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.epicodus.bookview.ui.MainActivity">
-            </meta-data>
+                android:value="com.epicodus.bookview.ui.BookResultsActivity"></meta-data>
+        </activity>
+        <activity android:name=".ui.CreateAccountActivity"
+            android:theme="@style/NoActionBarTheme">
         </activity>
     </application>
 

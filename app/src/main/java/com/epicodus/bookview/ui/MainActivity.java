@@ -16,7 +16,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    @Bind(R.id.submitButton) Button mSubmitButton;
+    @Bind(R.id.passwordLoginButton) Button mPasswordLoginButton;
     @Bind(R.id.nameEditText) EditText mNameEditText;
     @Bind(R.id.mainWelcome) TextView mMainWelcome;
 
@@ -29,12 +29,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Typeface pacificoFont = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");
         mMainWelcome.setTypeface(pacificoFont);
 
-        mSubmitButton.setOnClickListener(this);
+        mPasswordLoginButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if(v == mSubmitButton) {
+        if(v == mPasswordLoginButton) {
             String name = mNameEditText.getText().toString();
             Intent intent = new Intent(MainActivity.this, MenuActivity.class);
             intent.putExtra("name", name);
