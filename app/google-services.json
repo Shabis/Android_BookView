@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "292680747109",
+    "firebase_url": "https://bookview-151018.firebaseio.com",
+    "project_id": "bookview-151018",
+    "storage_bucket": "bookview-151018.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292680747109:android:18a3f096304f2df3",
+        "android_client_info": {
+          "package_name": "com.epicodus.bookview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292680747109-higf141ledhpnmndeefelb5vq8f9q6fs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epicodus.bookview",
+            "certificate_hash": "963FF5F898E8C418D61B036574AA59BDC41F35FD"
+          }
+        },
+        {
+          "client_id": "292680747109-qto2quija5l41secli0198c1fp7t0jo5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa2gvykYk1_K_2hqvJT9qjQvtrtuQfwRg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292680747109-qto2quija5l41secli0198c1fp7t0jo5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

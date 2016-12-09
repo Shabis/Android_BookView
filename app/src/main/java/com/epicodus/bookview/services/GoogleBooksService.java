@@ -47,16 +47,12 @@ public class GoogleBooksService {
     public ArrayList<Book> processResults(Response response) {
         ArrayList<Book> books = new ArrayList<>();
         try {
-            Log.v(TAG, "response in service" + response.toString());
             String jsonData = response.body().string();
-            Log.v(TAG, "This is jsondata"+jsonData);
 
             if (response.isSuccessful()) {
                 Log.v(TAG, "Beginning");
                 JSONObject googleJSON = new JSONObject(jsonData);
                 JSONArray itemsJSON = googleJSON.getJSONArray("items");
-
-
                 for (int i = 0; i < itemsJSON.length(); i++) {
                     JSONObject bookJSON = itemsJSON.getJSONObject(i);
 

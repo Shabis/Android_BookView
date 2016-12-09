@@ -1,6 +1,8 @@
 package com.epicodus.bookview.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.epicodus.bookview.Constants;
 import com.epicodus.bookview.R;
 import com.epicodus.bookview.adapters.BookListAdapter;
 import com.epicodus.bookview.models.Book;
@@ -24,6 +27,8 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class BookResultsActivity extends AppCompatActivity {
+    private SharedPreferences mSharedPreferences;
+    private String mRecentSearch;
     public static final String TAG = BookResultsActivity.class.getSimpleName();
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
 
@@ -39,6 +44,12 @@ public class BookResultsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String book = intent.getStringExtra("book");
         getBooks(book);
+        
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRecentSearch = mSharedPreferences.getString(Constants.SEARCH_PREFERENCE_KEY, null);
+        if (mRecentSearch != null) {
+            getBooks(mRecentSearch);
+        }
     }
 
     private void getBooks(String book){
