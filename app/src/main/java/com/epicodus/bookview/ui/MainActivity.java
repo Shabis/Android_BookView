@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.passwordLoginButton) Button mPasswordLoginButton;
     @Bind(R.id.nameEditText) EditText mNameEditText;
     @Bind(R.id.mainWelcome) TextView mMainWelcome;
+    @Bind(R.id.registerTextView) TextView mRegisterTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mMainWelcome.setTypeface(pacificoFont);
 
         mPasswordLoginButton.setOnClickListener(this);
+        mRegisterTextView.setOnClickListener(this);
     }
 
     @Override
@@ -39,6 +41,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(MainActivity.this, MenuActivity.class);
             intent.putExtra("name", name);
             startActivity(intent);
+        }
+        if (v == mRegisterTextView) {
+            Intent intent = new Intent(MainActivity.this, CreateAccountActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 }
