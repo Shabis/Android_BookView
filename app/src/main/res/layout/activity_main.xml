@@ -10,14 +10,6 @@
     android:background="@color/black"
     tools:context="com.epicodus.bookview.ui.MainActivity">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/imageView"
-        android:src="@drawable/openbook"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/emailEditText" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,22 +21,6 @@
         android:textColor="@color/colorTextIcons"
         android:id="@+id/mainWelcome" />
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorTextIcons"
-        android:textStyle="bold"
-        android:textSize="15sp"
-        android:text="Don't have an account? Register here!"
-        android:id="@+id/registerTextView"
-        android:layout_marginTop="5dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/mainWelcome"
-        android:layout_alignEnd="@+id/mainWelcome"
-        android:layout_marginRight="18dp"
-        android:layout_marginEnd="18dp" />
 
     <Button
         android:id="@+id/passwordLoginButton"
@@ -92,18 +68,25 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <EditText
-        android:id="@+id/nameEditText"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:hint="Name"
-        android:padding="10dp"
-        android:textColor="@android:color/black"
-        android:textColorHint="@color/colorDivider"
-        android:layout_marginBottom="10dp"
-        android:textSize="20sp"
-        android:layout_above="@+id/emailEditText"
+        android:textColor="@color/colorTextIcons"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:text="Don't have an account? Register here!"
+        android:id="@+id/registerTextView"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView"
+        android:src="@drawable/openbook"
+        android:layout_marginBottom="32dp"
+        android:layout_alignBottom="@+id/passwordEditText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
