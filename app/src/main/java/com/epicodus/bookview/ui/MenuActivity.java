@@ -29,7 +29,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.authorButton) Button mAuthorButton;
     @Bind(R.id.wishlistButton) Button mWishlistButton;
     @Bind(R.id.searchSubmitButton) Button mSearchSubmitButton;
-    @Bind(R.id.bookEditText) EditText mBookEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,21 +76,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(MenuActivity.this, WishlistActivity.class);
             startActivity(intent);
         } else if (v == mSearchSubmitButton) {
-            String book = mBookEditText.getText().toString();
-            saveBooksToFirebase(book);
             Intent intent = new Intent(MenuActivity.this, BookResultsActivity.class);
-            intent.putExtra("book", book);
             startActivity(intent);
         }
-    }
-
-    private void saveBooksToFirebase(String book) {
-        mSearchedBookReference.push().setValue(book);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mSearchedBookReference.removeEventListener(mSearchedBookReferenceListener);
     }
 }
