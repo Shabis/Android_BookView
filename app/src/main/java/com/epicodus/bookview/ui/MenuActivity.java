@@ -2,6 +2,7 @@ package com.epicodus.bookview.ui;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.epicodus.bookview.Constants;
 import com.epicodus.bookview.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +30,8 @@ import butterknife.ButterKnife;
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
     private DatabaseReference mSearchedBookReference;
     private ValueEventListener mSearchedBookReferenceListener;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Bind(R.id.welcomeUserTextView) TextView mWelcomeUserTextView;
     @Bind(R.id.authorButton) Button mAuthorButton;
@@ -36,6 +40,31 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_menu);
+        ButterKnife.bind(this);
+
+        Typeface pacificoFont = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");
+        mWelcomeUserTextView.setTypeface(pacificoFont);
+
+        mAuthorButton.setOnClickListener(this);
+        mWishlistButton.setOnClickListener(this);
+        mSearchSubmitButton.setOnClickListener(this);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+          @Override
+          public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+              FirebaseUser user = firebaseAuth.getCurrentUser();
+              if (user != null) {
+                  mWelcomeUserTextView.setText("Welcome " + user.getDisplayName() + "!");
+              } else {
+                  mWelcomeUserTextView.setText("Welcome!");
+              }
+          }
+        };
+
         mSearchedBookReference = FirebaseDatabase
                 .getInstance()
                 .getReference()
@@ -46,29 +75,13 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             public void onDataChange(DataSnapshot dataSnapshot) {
                for (DataSnapshot bookSnapshot : dataSnapshot.getChildren()) {
                    String book = bookSnapshot.getValue().toString();
-                   Log.v("location updated", "book " + book);
                }
            }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
-        ButterKnife.bind(this);
-        Typeface pacificoFont = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");
-        mWelcomeUserTextView.setTypeface(pacificoFont);
-
-//        Intent intent = getIntent();
-//        String name = intent.getStringExtra("name");
-//        mWelcomeUserTextView.setText("Welcome " + name + "!");
-
-        mAuthorButton.setOnClickListener(this);
-        mWishlistButton.setOnClickListener(this);
-        mSearchSubmitButton.setOnClickListener(this);
     }
 
     @Override
@@ -107,6 +120,20 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v == mSearchSubmitButton) {
             Intent intent = new Intent(MenuActivity.this, BookResultsActivity.class);
             startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
         }
     }
 }
