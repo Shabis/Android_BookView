@@ -25,19 +25,19 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="150dp"/>
 
-    <Button
-        android:layout_width="230dp"
-        android:layout_height="40dp"
-        android:text="Author List"
-        android:id="@+id/authorButton"
-        android:background="@color/colorAccent"
-        android:textColor="@color/colorTextIcons"
-        android:padding="5dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_above="@+id/wishlistButton"
-        android:layout_alignLeft="@+id/wishlistButton"
-        android:layout_alignStart="@+id/wishlistButton" />
+    <!--<Button-->
+        <!--android:layout_width="230dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:text="Author List"-->
+        <!--android:id="@+id/authorButton"-->
+        <!--android:background="@color/colorAccent"-->
+        <!--android:textColor="@color/colorTextIcons"-->
+        <!--android:padding="5dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_above="@+id/wishlistButton"-->
+        <!--android:layout_alignLeft="@+id/wishlistButton"-->
+        <!--android:layout_alignStart="@+id/wishlistButton" />-->
 
     <Button
         android:layout_width="230dp"
@@ -62,8 +62,8 @@
         android:background="@color/colorAccent"
         android:textColor="@color/colorTextIcons"
         android:padding="5dp"
-        android:layout_above="@+id/authorButton"
-        android:layout_alignLeft="@+id/authorButton"
-        android:layout_alignStart="@+id/authorButton" />
+        android:layout_above="@+id/wishlistButton"
+        android:layout_alignLeft="@+id/wishlistButton"
+        android:layout_alignStart="@+id/wishlistButton" />
 
 </RelativeLayout>

@@ -34,7 +34,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Bind(R.id.welcomeUserTextView) TextView mWelcomeUserTextView;
-    @Bind(R.id.authorButton) Button mAuthorButton;
     @Bind(R.id.wishlistButton) Button mWishlistButton;
     @Bind(R.id.searchSubmitButton) Button mSearchSubmitButton;
 
@@ -47,7 +46,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         Typeface pacificoFont = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");
         mWelcomeUserTextView.setTypeface(pacificoFont);
 
-        mAuthorButton.setOnClickListener(this);
         mWishlistButton.setOnClickListener(this);
         mSearchSubmitButton.setOnClickListener(this);
 
@@ -111,10 +109,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if(v == mAuthorButton) {
-            Intent intent = new Intent(MenuActivity.this, AuthorActivity.class);
-            startActivity(intent);
-        } else if (v == mWishlistButton) {
+         if (v == mWishlistButton) {
             Intent intent = new Intent(MenuActivity.this, WishlistActivity.class);
             startActivity(intent);
         } else if (v == mSearchSubmitButton) {

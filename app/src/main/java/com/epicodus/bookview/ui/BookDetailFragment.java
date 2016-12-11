@@ -18,6 +18,8 @@ import android.widget.Toast;
 import com.epicodus.bookview.Constants;
 import com.epicodus.bookview.R;
 import com.epicodus.bookview.models.Book;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -89,10 +91,16 @@ public class BookDetailFragment extends Fragment implements View.OnClickListener
             startActivity(webIntent);
         }
         if (v == mSaveBookButton) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
             DatabaseReference bookRef = FirebaseDatabase
                     .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_WISHLIST);
-            bookRef.push().setValue(mBook);
+                    .getReference(Constants.FIREBASE_CHILD_WISHLIST)
+                    .child(uid);
+            DatabaseReference pushRef = bookRef.push();
+            String pushId = pushRef.getKey();
+            mBook.setPushId(pushId);
+            pushRef.setValue(mBook);
             Toast.makeText(getContext(), "Book Saved to Wishlist", Toast.LENGTH_LONG).show();
         }
     }
