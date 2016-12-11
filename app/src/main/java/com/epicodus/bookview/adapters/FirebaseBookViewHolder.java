@@ -2,10 +2,12 @@ package com.epicodus.bookview.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Rating;
 import android.os.Parcel;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.epicodus.bookview.Constants;
@@ -45,17 +47,17 @@ public class FirebaseBookViewHolder extends RecyclerView.ViewHolder implements V
         ImageView bookImageView = (ImageView) mView.findViewById(R.id.bookImageView);
         TextView titleTextView = (TextView) mView.findViewById(R.id.bookTitleTextView);
         TextView authorTextView = (TextView) mView.findViewById(R.id.bookAuthorTextView);
-        TextView ratingTextView = (TextView) mView.findViewById(R.id.bookRatingTextView);
+        RatingBar ratingBar = (RatingBar) mView.findViewById(R.id.ratingBar);
 
         Picasso.with(mContext)
                 .load(book.getImageUrl())
                 .resize(MAX_WIDTH, MAX_HEIGHT)
                 .centerCrop()
                 .into(bookImageView);
-
+        String rating = Double.toString(book.getAverageRating());
         titleTextView.setText(book.getTitle());
         authorTextView.setText(book.getAuthors().get(0));
-        ratingTextView.setText("Rating: " + book.getAverageRating());
+        ratingBar.setRating(Float.parseFloat(String.valueOf(rating)));
     }
 
     @Override

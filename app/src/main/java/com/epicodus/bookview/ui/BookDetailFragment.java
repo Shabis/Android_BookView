@@ -75,8 +75,6 @@ public class BookDetailFragment extends Fragment implements View.OnClickListener
         mDescriptionLabel.setText(mBook.getDescription());
         mRatingBar.setRating(Float.parseFloat(String.valueOf(rating)));
         mRatingCountLabel.setText((Integer.toString(mBook.getRatingCount())) + " Ratings");
-        Log.v("rating = ", rating);
-        Log.v("mRatingBar ", mRatingBar.toString());
 
         mSaveBookButton.setOnClickListener(this);
         mWebsiteLabel.setOnClickListener(this);

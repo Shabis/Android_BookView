@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.epicodus.bookview.Constants;
@@ -61,7 +62,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         @Bind(R.id.bookImageView) ImageView mBookImageView;
         @Bind(R.id.bookTitleTextView) TextView mBookTitleTextView;
         @Bind(R.id.bookAuthorTextView) TextView mBookAuthorTextView;
-        @Bind(R.id.bookRatingTextView) TextView mBookRatingTextView;
+        @Bind(R.id.ratingBar) RatingBar mRatingBar;
 
         private Context mContext;
 
@@ -74,6 +75,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         }
 
         public void bindBook(Book book) {
+            String rating = Double.toString(book.getAverageRating());
             Picasso.with(mContext)
                     .load(book.getImageUrl())
                     .resize(MAX_WIDTH, MAX_HEIGHT)
@@ -81,7 +83,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
                     .into(mBookImageView);
             mBookTitleTextView.setText(book.getTitle());
             mBookAuthorTextView.setText(book.getAuthors().get(0));
-            mBookRatingTextView.setText("Rating: " + book.getAverageRating());
+            mRatingBar.setRating(Float.parseFloat(String.valueOf(rating)));
         }
 
         @Override
