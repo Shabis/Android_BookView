@@ -74,7 +74,7 @@ public class BookDetailFragment extends Fragment implements View.OnClickListener
         String rating = Double.toString(mBook.getAverageRating());
         mTitleLabel.setText(mBook.getTitle());
         mAuthorLabel.setText("By " + (android.text.TextUtils.join("\n", mBook.getAuthors())));
-        mDescriptionLabel.setText(mBook.getDescription());
+        mDescriptionLabel.setText((mBook.getDescription()) + "\n\n\n\n");
         mRatingBar.setRating(Float.parseFloat(String.valueOf(rating)));
         mRatingCountLabel.setText((Integer.toString(mBook.getRatingCount())) + " Ratings");
 
