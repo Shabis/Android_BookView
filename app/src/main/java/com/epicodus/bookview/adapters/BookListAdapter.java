@@ -63,6 +63,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         @Bind(R.id.bookTitleTextView) TextView mBookTitleTextView;
         @Bind(R.id.bookAuthorTextView) TextView mBookAuthorTextView;
         @Bind(R.id.ratingBar) RatingBar mRatingBar;
+        @Bind(R.id.bookRatingCountTextView) TextView mBookRatingCountTextView;
 
         private Context mContext;
 
@@ -82,8 +83,9 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
                     .centerCrop()
                     .into(mBookImageView);
             mBookTitleTextView.setText(book.getTitle());
-            mBookAuthorTextView.setText(book.getAuthors().get(0));
+            mBookAuthorTextView.setText("By " + (book.getAuthors().get(0)));
             mRatingBar.setRating(Float.parseFloat(String.valueOf(rating)));
+            mBookRatingCountTextView.setText(Integer.toString(book.getRatingCount()) + " Ratings");
         }
 
         @Override
