@@ -32,8 +32,8 @@ import java.util.ArrayList;
 public class FirebaseBookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
-    public ImageView mBookImageView;
 
+    public ImageView mBookImageView;
     View mView;
     Context mContext;
 
@@ -41,7 +41,6 @@ public class FirebaseBookViewHolder extends RecyclerView.ViewHolder implements V
         super(itemView);
         mView = itemView;
         mContext = itemView.getContext();
-        itemView.setOnClickListener(this);
     }
 
     public void bindBook(Book book) {
