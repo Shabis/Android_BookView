@@ -32,6 +32,7 @@ import java.util.ArrayList;
 public class FirebaseBookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
+    public ImageView mBookImageView;
 
     View mView;
     Context mContext;
@@ -44,7 +45,7 @@ public class FirebaseBookViewHolder extends RecyclerView.ViewHolder implements V
     }
 
     public void bindBook(Book book) {
-        ImageView bookImageView = (ImageView) mView.findViewById(R.id.bookImageView);
+        mBookImageView = (ImageView) mView.findViewById(R.id.bookImageView);
         TextView titleTextView = (TextView) mView.findViewById(R.id.bookTitleTextView);
         TextView authorTextView = (TextView) mView.findViewById(R.id.bookAuthorTextView);
         RatingBar ratingBar = (RatingBar) mView.findViewById(R.id.ratingBar);
@@ -53,7 +54,7 @@ public class FirebaseBookViewHolder extends RecyclerView.ViewHolder implements V
                 .load(book.getImageUrl())
                 .resize(MAX_WIDTH, MAX_HEIGHT)
                 .centerCrop()
-                .into(bookImageView);
+                .into(mBookImageView);
         String rating = Double.toString(book.getAverageRating());
         titleTextView.setText(book.getTitle());
         authorTextView.setText(book.getAuthors().get(0));
