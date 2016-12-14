@@ -3,6 +3,7 @@ package com.epicodus.bookview.models;
 
 import org.parceler.Parcel;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 /**
  * Created by Shelby Clayton on 11/30/2016.
@@ -17,6 +18,7 @@ public class Book {
     int ratingCount;
     String website;
     private String pushId;
+    String index;
 
     public Book() {}
 
@@ -29,6 +31,7 @@ public class Book {
         this.ratingCount = ratingCount;
         this.website = website;
         this.imageUrl = getLargeImageUrl(imageUrl);
+        this.index = "not_specified";
     }
 
     public String getTitle() {
@@ -70,5 +73,13 @@ public class Book {
 
     public void setPushId(String pushId) {
         this.pushId = pushId;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 }
