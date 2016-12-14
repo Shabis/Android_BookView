@@ -33,22 +33,13 @@
         android:padding="10dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="291dp"
             android:layout_height="wrap_content"
             android:id="@+id/bookTitleTextView"
             android:textSize="20dp"
             android:textStyle="bold"
             android:text="Book Title"
             android:textColor="@color/colorPrimary"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Author"
-            android:id="@+id/bookAuthorTextView"
-            android:layout_below="@+id/bookTitleTextView"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -76,6 +67,15 @@
                 android:layout_toStartOf="@+id/ratingBar"
                 android:layout_marginRight="7dp"
                 android:layout_marginEnd="7dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Author"
+                android:id="@+id/bookAuthorTextView"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
         </RelativeLayout>
     </LinearLayout>
 

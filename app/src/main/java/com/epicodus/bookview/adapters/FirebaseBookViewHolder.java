@@ -22,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -48,6 +49,7 @@ public class FirebaseBookViewHolder extends RecyclerView.ViewHolder implements V
         TextView titleTextView = (TextView) mView.findViewById(R.id.bookTitleTextView);
         TextView authorTextView = (TextView) mView.findViewById(R.id.bookAuthorTextView);
         RatingBar ratingBar = (RatingBar) mView.findViewById(R.id.ratingBar);
+        TextView ratingCount = (TextView) mView.findViewById(R.id.bookRatingCountTextView);
 
         Picasso.with(mContext)
                 .load(book.getImageUrl())
@@ -58,6 +60,7 @@ public class FirebaseBookViewHolder extends RecyclerView.ViewHolder implements V
         titleTextView.setText(book.getTitle());
         authorTextView.setText(book.getAuthors().get(0));
         ratingBar.setRating(Float.parseFloat(String.valueOf(rating)));
+        ratingCount.setText(Integer.toString(book.getRatingCount()) + " Ratings");
     }
 
     @Override
