@@ -20,8 +20,8 @@
         android:padding="10dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
             android:id="@+id/bookTitleTextView"
             android:textSize="18dp"
             android:textStyle="bold"
@@ -48,7 +48,7 @@
                 android:text="Rating"
                 android:id="@+id/ratingBar"
                 android:textColor="@color/colorAccent"
-                android:layout_alignParentTop="true"
+                android:layout_alignTop="@+id/bookRatingCountTextView"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
 
@@ -60,8 +60,8 @@
                 android:textColor="@color/colorSecondaryText"
                 android:textStyle="italic"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_toLeftOf="@+id/ratingBar"
+                android:layout_toStartOf="@+id/ratingBar" />
         </RelativeLayout>
     </LinearLayout>
 
