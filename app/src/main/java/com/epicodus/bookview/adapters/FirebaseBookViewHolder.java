@@ -72,11 +72,9 @@ public class FirebaseBookViewHolder extends RecyclerView.ViewHolder implements V
                 }
 
                 int itemPosition = getLayoutPosition();
-
                 Intent intent = new Intent(mContext, BookDetailActivity.class);
                 intent.putExtra("position", itemPosition + "");
                 intent.putExtra("books", Parcels.wrap(books));
-
                 mContext.startActivity(intent);
             }
 

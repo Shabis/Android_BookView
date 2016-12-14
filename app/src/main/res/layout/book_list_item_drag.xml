@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="66dp"
+            android:layout_height="100dp"
+            android:id="@+id/bookImageView"
+            android:src="@drawable/placeholder"
+            android:scaleType="centerCrop"/>
+
+        <ImageView
+            android:id="@+id/dragIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignLeft="@id/bookImageView"
+            android:layout_alignBottom="@id/bookImageView"
+            android:gravity="bottom|left"
+            android:src="@drawable/ic_reorder_white_24dp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="#ffffff"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bookTitleTextView"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Book Title"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Author"
+            android:id="@+id/bookAuthorTextView"
+            android:layout_below="@+id/bookTitleTextView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RatingBar
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:id="@+id/ratingBar"
+                style="?android:attr/ratingBarStyleSmall"
+                android:isIndicator="true"
+                android:layout_alignTop="@+id/bookRatingCountTextView"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 Ratings"
+                android:id="@+id/bookRatingCountTextView"
+                android:textColor="@color/colorSecondaryText"
+                android:textStyle="italic"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/ratingBar"
+                android:layout_toStartOf="@+id/ratingBar"
+                android:layout_marginRight="7dp"
+                android:layout_marginEnd="7dp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

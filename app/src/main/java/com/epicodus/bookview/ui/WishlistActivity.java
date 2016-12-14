@@ -52,7 +52,7 @@ public class WishlistActivity extends AppCompatActivity {
 
     private void setUpFirebaseAdapter() {
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Book, FirebaseBookViewHolder>
-                (Book.class, R.layout.book_list_item, FirebaseBookViewHolder.class,
+                (Book.class, R.layout.book_list_item_drag, FirebaseBookViewHolder.class,
                         mBookReference) {
 
             @Override
