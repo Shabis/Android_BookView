@@ -6,9 +6,10 @@
     tools:context="com.epicodus.bookview.ui.BookResultsActivity">
 
     <fragment
+        android:id="@+id/fragmentRestaurantList"
+        android:name="com.epicodus.bookview.ui.BookListFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/fragmentBookList"
-        android:name="com.epicodus.bookview.ui.BookListFragment"
         tools:layout="@layout/fragment_book_list" />
+
 </RelativeLayout>
