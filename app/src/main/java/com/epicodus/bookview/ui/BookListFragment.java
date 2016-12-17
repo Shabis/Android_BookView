@@ -2,7 +2,6 @@ package com.epicodus.bookview.ui;
 
 
 import android.content.SharedPreferences;
-import android.location.Address;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;

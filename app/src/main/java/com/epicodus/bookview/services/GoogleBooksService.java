@@ -1,7 +1,5 @@
 package com.epicodus.bookview.services;
 
-import android.util.Log;
-
 import com.epicodus.bookview.Constants;
 import com.epicodus.bookview.models.Book;
 
@@ -11,7 +9,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -19,11 +16,8 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import se.akerfeldt.okhttp.signpost.OkHttpOAuthConsumer;
-import se.akerfeldt.okhttp.signpost.SigningInterceptor;
 
 public class GoogleBooksService {
-    public static final String TAG = GoogleBooksService.class.getSimpleName();
 
     public static void findBooks(String book, Callback callback) {
         OkHttpClient client = new OkHttpClient.Builder()
@@ -33,8 +27,6 @@ public class GoogleBooksService {
         urlBuilder.addQueryParameter(Constants.GOOGLE_BOOKS_QUERY_PARAMETER, book);
         urlBuilder.addQueryParameter(Constants.GOOGLE_BOOKS_KEY_PARAMETER, Constants.GOOGLE_BOOKS_KEY);
         String url = urlBuilder.build().toString();
-        Log.v(TAG, url);
-
 
         Request request = new Request.Builder()
                 .url(url)
@@ -50,7 +42,6 @@ public class GoogleBooksService {
             String jsonData = response.body().string();
 
             if (response.isSuccessful()) {
-                Log.v(TAG, "Beginning");
                 JSONObject googleJSON = new JSONObject(jsonData);
                 JSONArray itemsJSON = googleJSON.getJSONArray("items");
                 for (int i = 0; i < itemsJSON.length(); i++) {
@@ -106,7 +97,6 @@ public class GoogleBooksService {
 
                     Book book = new Book(title, authors, description, imageUrl, averageRating, ratingCount, website);
                     books.add(book);
-                    Log.v(TAG, "end");
                 }
             }
         } catch (IOException e) {

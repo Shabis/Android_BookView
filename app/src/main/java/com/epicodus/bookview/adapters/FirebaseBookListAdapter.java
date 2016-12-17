@@ -11,7 +11,6 @@ import android.view.View;
 
 import com.epicodus.bookview.Constants;
 import com.epicodus.bookview.R;
-import com.epicodus.bookview.adapters.FirebaseBookViewHolder;
 import com.epicodus.bookview.models.Book;
 import com.epicodus.bookview.ui.BookDetailActivity;
 import com.epicodus.bookview.ui.BookDetailFragment;
