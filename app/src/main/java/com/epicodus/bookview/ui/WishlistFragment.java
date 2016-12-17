@@ -47,9 +47,11 @@ public class WishlistFragment extends Fragment implements OnStartDragListener {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
 
+
         Query query = FirebaseDatabase.getInstance()
                 .getReference(Constants.FIREBASE_CHILD_WISHLIST)
-                .child(uid);
+                .child(uid)
+                .orderByChild(Constants.FIREBASE_QUERY_INDEX);;
 
         mFirebaseAdapter = new FirebaseBookListAdapter(Book.class,
                 R.layout.book_list_item_drag, FirebaseBookViewHolder.class,
