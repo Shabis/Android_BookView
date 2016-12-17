@@ -49,8 +49,7 @@ public class WishlistFragment extends Fragment implements OnStartDragListener {
 
         Query query = FirebaseDatabase.getInstance()
                 .getReference(Constants.FIREBASE_CHILD_WISHLIST)
-                .child(uid)
-                .orderByChild(Constants.FIREBASE_QUERY_INDEX);
+                .child(uid);
 
         mFirebaseAdapter = new FirebaseBookListAdapter(Book.class,
                 R.layout.book_list_item_drag, FirebaseBookViewHolder.class,
@@ -60,26 +59,19 @@ public class WishlistFragment extends Fragment implements OnStartDragListener {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mFirebaseAdapter);
 
-        mFirebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-            @Override
-            public void onItemRangeInserted(int positionStart, int itemCount) {
-                super.onItemRangeInserted(positionStart, itemCount);
-                mFirebaseAdapter.notifyDataSetChanged();
-            }
-        });
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mFirebaseAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mRecyclerView);
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mFirebaseAdapter.cleanup();
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+        mItemTouchHelper.startDrag(viewHolder);
     }
 
     @Override
-    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
-        mItemTouchHelper.startDrag(viewHolder);
+    public void onDestroy() {
+        super.onDestroy();
+        mFirebaseAdapter.cleanup();
     }
 }

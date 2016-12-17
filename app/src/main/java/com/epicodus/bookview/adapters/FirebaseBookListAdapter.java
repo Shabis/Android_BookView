@@ -6,12 +6,12 @@ import android.content.res.Configuration;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MotionEventCompat;
-import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.epicodus.bookview.Constants;
 import com.epicodus.bookview.R;
+import com.epicodus.bookview.adapters.FirebaseBookViewHolder;
 import com.epicodus.bookview.models.Book;
 import com.epicodus.bookview.ui.BookDetailActivity;
 import com.epicodus.bookview.ui.BookDetailFragment;
@@ -27,7 +27,6 @@ import com.google.firebase.database.Query;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 /**
@@ -36,21 +35,14 @@ import java.util.Collections;
 public class FirebaseBookListAdapter extends FirebaseRecyclerAdapter<Book, FirebaseBookViewHolder> implements ItemTouchHelperAdapter {
     private DatabaseReference mRef;
     private OnStartDragListener mOnStartDragListener;
-    private Context mContext;
     private ChildEventListener mChildEventListener;
+    private Context mContext;
     private ArrayList<Book> mBooks = new ArrayList<>();
     private int mOrientation;
 
-    private void setIndexInFirebase() {
-        for (Book book : mBooks) {
-            int index = mBooks.indexOf(book);
-            DatabaseReference ref = getRef(index);
-            book.setIndex(Integer.toString(index));
-            ref.setValue(book);
-        }
-    }
-
-    public FirebaseBookListAdapter(Class<Book> modelClass, int modelLayout, Class<FirebaseBookViewHolder> viewHolderClass, Query ref, OnStartDragListener onStartDragListener, Context context) {
+    public FirebaseBookListAdapter(Class<Book> modelClass, int modelLayout,
+                                   Class<FirebaseBookViewHolder> viewHolderClass,
+                                   Query ref, OnStartDragListener onStartDragListener, Context context) {
 
         super(modelClass, modelLayout, viewHolderClass, ref);
         mRef = ref.getRef();
@@ -58,6 +50,7 @@ public class FirebaseBookListAdapter extends FirebaseRecyclerAdapter<Book, Fireb
         mContext = context;
 
         mChildEventListener = mRef.addChildEventListener(new ChildEventListener() {
+
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 mBooks.add(dataSnapshot.getValue(Book.class));
@@ -95,6 +88,7 @@ public class FirebaseBookListAdapter extends FirebaseRecyclerAdapter<Book, Fireb
         }
 
         viewHolder.mBookImageView.setOnTouchListener(new View.OnTouchListener() {
+
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
@@ -102,6 +96,7 @@ public class FirebaseBookListAdapter extends FirebaseRecyclerAdapter<Book, Fireb
                 }
                 return false;
             }
+
         });
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +106,7 @@ public class FirebaseBookListAdapter extends FirebaseRecyclerAdapter<Book, Fireb
                 int itemPosition = viewHolder.getAdapterPosition();
                 if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
                     createDetailFragment(itemPosition);
-                } else  {
+                } else {
                     Intent intent = new Intent(mContext, BookDetailActivity.class);
                     intent.putExtra(Constants.EXTRA_KEY_POSITION, itemPosition);
                     intent.putExtra(Constants.EXTRA_KEY_BOOKS, Parcels.wrap(mBooks));
@@ -140,6 +135,15 @@ public class FirebaseBookListAdapter extends FirebaseRecyclerAdapter<Book, Fireb
     public void onItemDismiss(int position) {
         mBooks.remove(position);
         getRef(position).removeValue();
+    }
+
+    private void setIndexInFirebase() {
+        for (Book book : mBooks) {
+            int index = mBooks.indexOf(book);
+            DatabaseReference ref = getRef(index);
+            book.setIndex(Integer.toString(index));
+            ref.setValue(book);
+        }
     }
 
     @Override

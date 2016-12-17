@@ -2,8 +2,6 @@ package com.epicodus.bookview.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Rating;
-import android.os.Parcel;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
