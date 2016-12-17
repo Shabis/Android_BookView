@@ -49,14 +49,14 @@ public class BookDetailFragment extends Fragment implements View.OnClickListener
     private int mPosition;
 
     public static BookDetailFragment newInstance(ArrayList<Book> books, Integer position) {
-        BookDetailFragment restaurantDetailFragment = new BookDetailFragment();
+        BookDetailFragment bookDetailFragment = new BookDetailFragment();
         Bundle args = new Bundle();
 
         args.putParcelable(Constants.EXTRA_KEY_BOOKS, Parcels.wrap(books));
         args.putInt(Constants.EXTRA_KEY_POSITION, position);
 
-        restaurantDetailFragment.setArguments(args);
-        return restaurantDetailFragment;
+        bookDetailFragment.setArguments(args);
+        return bookDetailFragment;
     }
 
     @Override
@@ -69,8 +69,7 @@ public class BookDetailFragment extends Fragment implements View.OnClickListener
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_book_detail, container, false);
         ButterKnife.bind(this, view);
 
