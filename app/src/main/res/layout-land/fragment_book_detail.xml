@@ -45,6 +45,17 @@
                 android:layout_toRightOf="@+id/bookImageView"
                 android:layout_toEndOf="@+id/bookImageView" />
 
+            <RatingBar
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:id="@+id/ratingBar"
+                style="?android:attr/ratingBarStyleSmall"
+                android:isIndicator="true"
+                android:layout_marginBottom="10dp"
+                android:layout_above="@+id/websiteTextView"
+                android:layout_toRightOf="@+id/bookImageView"
+                android:layout_toEndOf="@+id/bookImageView" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,17 +63,8 @@
                 android:id="@+id/bookRatingCountTextView"
                 android:textColor="@color/colorSecondaryText"
                 android:textStyle="italic"
-                android:layout_above="@+id/websiteTextView"
-                android:layout_toRightOf="@+id/bookImageView"
-                android:layout_toEndOf="@+id/bookImageView" />
-
-            <RatingBar
-                android:layout_width="80dp"
-                android:layout_height="20dp"
-                android:id="@+id/ratingBar"
-                style="?android:attr/ratingBarStyleSmall"
-                android:isIndicator="true"
-                android:layout_above="@+id/bookRatingCountTextView"
+                android:layout_marginBottom="6dp"
+                android:layout_above="@+id/ratingBar"
                 android:layout_toRightOf="@+id/bookImageView"
                 android:layout_toEndOf="@+id/bookImageView" />
 
@@ -122,7 +124,7 @@
                 android:text="Book Title"
                 android:id="@+id/bookTitleTextView"
                 android:textSize="20sp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorLightPrimary"
                 android:textStyle="bold"
                 android:layout_marginLeft="11dp"
                 android:layout_marginStart="11dp"
