@@ -2,6 +2,9 @@ package com.epicodus.bookview.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +18,7 @@ import com.epicodus.bookview.Constants;
 import com.epicodus.bookview.R;
 import com.epicodus.bookview.models.Book;
 import com.epicodus.bookview.ui.BookDetailActivity;
+import com.epicodus.bookview.ui.BookDetailFragment;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcel;
@@ -65,6 +69,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         @Bind(R.id.ratingBar) RatingBar mRatingBar;
         @Bind(R.id.bookRatingCountTextView) TextView mBookRatingCountTextView;
 
+        private int mOrientation;
         private Context mContext;
 
         public BookViewHolder(View itemView) {
@@ -73,6 +78,19 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
             mContext = itemView.getContext();
 
             itemView.setOnClickListener(this);
+
+            mOrientation = itemView.getResources().getConfiguration().orientation;
+
+            if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                createDetailFragment(0);
+            }
+        }
+
+        private void createDetailFragment(int position) {
+            BookDetailFragment detailFragment = BookDetailFragment.newInstance(mBooks, position);
+            FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.bookDetailContainer, detailFragment);
+            ft.commit();
         }
 
         public void bindBook(Book book) {
@@ -91,10 +109,14 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         @Override
         public void onClick(View v) {
             int itemPosition = getLayoutPosition();
-            Intent intent = new Intent(mContext, BookDetailActivity.class);
-            intent.putExtra("position", itemPosition + "");
-            intent.putExtra("books", Parcels.wrap(mBooks));
-            mContext.startActivity(intent);
+            if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                createDetailFragment(itemPosition);
+            } else {
+                Intent intent = new Intent(mContext, BookDetailActivity.class);
+                intent.putExtra(Constants.EXTRA_KEY_POSITION, itemPosition);
+                intent.putExtra(Constants.EXTRA_KEY_BOOKS, Parcels.wrap(mBooks));
+                mContext.startActivity(intent);
+            }
         }
     }
 }

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="130dp"
+        android:id="@+id/bookImageView"
+        android:src="@drawable/placeholder"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="#ffffff"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:id="@+id/bookTitleTextView"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:text="Book Title"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Book Author"
+            android:id="@+id/bookAuthorTextView"
+            android:layout_below="@+id/bookTitleTextView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RatingBar
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                style="?android:attr/ratingBarStyleSmall"
+                android:text="Rating"
+                android:id="@+id/ratingBar"
+                android:textColor="@color/colorAccent"
+                android:layout_alignTop="@+id/bookRatingCountTextView"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 Ratings"
+                android:id="@+id/bookRatingCountTextView"
+                android:textColor="@color/colorSecondaryText"
+                android:textStyle="italic"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/ratingBar"
+                android:layout_toStartOf="@+id/ratingBar" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

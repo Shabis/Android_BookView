@@ -19,7 +19,7 @@ public class BookPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return BookDetailFragment.newInstance(mBooks.get(position));
+        return BookDetailFragment.newInstance(mBooks, position);
     }
 
     @Override

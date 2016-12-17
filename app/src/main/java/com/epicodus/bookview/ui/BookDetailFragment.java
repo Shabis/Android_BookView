@@ -26,6 +26,8 @@ import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -43,19 +45,26 @@ public class BookDetailFragment extends Fragment implements View.OnClickListener
     @Bind(R.id.ratingBar) RatingBar mRatingBar;
 
     private Book mBook;
+    private ArrayList<Book> mBooks;
+    private int mPosition;
 
-    public static BookDetailFragment newInstance(Book book) {
-        BookDetailFragment bookDetailFragment = new BookDetailFragment();
+    public static BookDetailFragment newInstance(ArrayList<Book> books, Integer position) {
+        BookDetailFragment restaurantDetailFragment = new BookDetailFragment();
         Bundle args = new Bundle();
-        args.putParcelable("book", Parcels.wrap(book));
-        bookDetailFragment.setArguments(args);
-        return bookDetailFragment;
+
+        args.putParcelable(Constants.EXTRA_KEY_BOOKS, Parcels.wrap(books));
+        args.putInt(Constants.EXTRA_KEY_POSITION, position);
+
+        restaurantDetailFragment.setArguments(args);
+        return restaurantDetailFragment;
     }
 
     @Override
     public void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
-        mBook = Parcels.unwrap(getArguments().getParcelable("book"));
+        mBooks = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_KEY_BOOKS));
+        mPosition = getArguments().getInt(Constants.EXTRA_KEY_POSITION);
+        mBook = mBooks.get(mPosition);
     }
 
 

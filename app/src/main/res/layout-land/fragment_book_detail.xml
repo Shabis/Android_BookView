@@ -1,0 +1,117 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.epicodus.bookview.ui.BookDetailFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@android:color/white"
+            android:paddingTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="20dp">
+
+            <ImageView
+                android:layout_width="119dp"
+                android:layout_height="180dp"
+                android:id="@+id/bookImageView"
+                android:src="@drawable/placeholder"
+                android:scaleType="centerCrop"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Book Title"
+                android:id="@+id/bookTitleTextView"
+                android:textSize="20sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/bookImageView"
+                android:layout_toEndOf="@+id/bookImageView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Author(s) not available"
+                android:id="@+id/bookAuthorTextView"
+                android:drawablePadding="4dp"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:gravity="left"
+                android:layout_below="@+id/bookTitleTextView"
+                android:layout_toRightOf="@+id/bookImageView"
+                android:layout_toEndOf="@+id/bookImageView" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_weight="6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save Book to WishList"
+                android:id="@+id/saveBookButton"
+                android:background="@color/colorAccent"
+                android:textColor="@color/colorTextIcons"
+                android:textSize="15sp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="See Book Preview"
+                android:id="@+id/websiteTextView"
+                android:drawableLeft="@drawable/ic_book_black_24dp"
+                android:drawablePadding="4dp"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:gravity="left"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <RatingBar
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:id="@+id/ratingBar"
+                style="?android:attr/ratingBarStyleSmall"
+                android:isIndicator="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 Ratings"
+                android:id="@+id/bookRatingCountTextView"
+                android:textColor="@color/colorSecondaryText"
+                android:textStyle="italic"
+                android:layout_alignBottom="@+id/ratingBar"
+                android:layout_toLeftOf="@+id/ratingBar"
+                android:layout_toStartOf="@+id/ratingBar" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</FrameLayout>
